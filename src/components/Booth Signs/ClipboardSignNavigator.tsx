@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-//@ts-ignore
-import "./App-Station.css"
 import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Booth, Bottle, Region } from '../../types.ts';
 import Clipboard from './Clipboard.tsx';
