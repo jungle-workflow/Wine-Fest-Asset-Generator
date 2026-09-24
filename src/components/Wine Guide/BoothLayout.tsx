@@ -1,4 +1,4 @@
-import { Booth, Bottle } from "../types";
+import { Booth, Bottle } from "../../types";
 import BottleLayout from './BottleLayout';
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react';
@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 interface props {
     booth: Booth,
+    //index: number,
     classAttr: string
     regionLabel: string
 }
@@ -20,10 +21,9 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
             try {
                 const data = await QRCode.toDataURL(`junglejims.com/orderwine?booth=${booth.number}`, {
                     color: {
-                        dark: '#fff',  // Blue dots
+                        dark: '#b01b39',  // Blue dots
                         light: '#0000' // Transparent background
-                    },
-                    margin: 0
+                    }
                 })
                 return data
             } catch (err) {
@@ -47,13 +47,14 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
 
     return <>
         <div className={`boothContainer ${position}`}>
-            {/* <img id="wine" src="./src/assets/wine.png" /> */}
 
-            <div className="banner">
+            <div className='banner'>
                 <div className='tableNumContainer'>
-                    {/* <p>BOOTH</p> */}
+                    <p>BOOTH</p>
                     <span className='tableNum'>{booth.bottles[0]["Booth #"]}</span>
                 </div>
+
+                <img src='./src/assets/Monorail-Red.png' className='monorail'></img>
 
                 <div className='qrcontainer'>
                     <img className="qr" src={qr} />
@@ -61,24 +62,21 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
                 </div>
             </div>
 
-
             <div className='title'>
                 <div className='nameAndRegion'>
-                    <h1>{booth.bottles[0]["Booth Name"]}</h1>
-                    {booth.bottles[0]["Is this a connoisseur/VIP wine?"] == "Yes"
+                    <h1>{booth.bottles[0].Booth_Name}</h1>
+                    {regionLabel == "VIP"
                         ? undefined
-                        : <p className="region">{booth.bottles[0]['What country or region is this wine from?']}</p>
+                        : <p className="region">{booth.bottles[0].Region}</p>
                     }
-                    {/* <div className="bottles">
-                        {booth.bottles.map((wine: Bottle, index) => {
-                            return <><BottleLayout bottle={wine} key={index}></BottleLayout><p>•</p></>
-                        })}
-                    </div> */}
                 </div>
-
             </div>
 
-
+            <div className="bottles">
+                {booth.bottles.map((wine: Bottle, index) => {
+                    return <BottleLayout bottle={wine} key={index}></BottleLayout>
+                })}
+            </div>
         </div>
     </>
 }

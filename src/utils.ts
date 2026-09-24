@@ -4,7 +4,7 @@ import html2pdf from 'html2pdf.js';
 
 export const fetchWineData = async (): Promise<Bottle[]> => {
     try {
-        const response = await fetch("https://script.google.com/a/macros/junglejims.com/s/AKfycbxQqq-6tKwuCZxbyXnGZAxGsx3o0WBc14tk-l1TZMjz0RfRu2V_GhqMYp85izuLUqiJdQ/exec");
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz4yrN6sQF9b1foeOmfD_5lvrrghd0MAqXRwcsy-Bv-l12XdChOGnbIzMwkVV2YHMFcRA/exec");
         //const response = await fetch("/src/assets/data.json");
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -36,8 +36,9 @@ export const groupBooths = (response: Bottle[]): Booth[] => {
         } else {
             // If the section doesn't exist in the groupedData object, create it
             const booth: Booth = {
-                name: bottle["Booth Name"],
+                name: bottle["Booth_Name"],
                 number: bottle["Booth #"],
+                ID: bottle.Wine_ID,
                 bottles: [bottle],
                 kind: kinds.booth
             }
@@ -55,7 +56,7 @@ export const groupRegions = (booths: Booth[]): Region[] => {
     const regions: Region[] = []
 
     booths.forEach((booth: Booth) => {
-        const regionName: string = `${booth.number}`.includes("C") ? "VIP" : booth.bottles[0]['What country or region is this wine from?']
+        const regionName: string = `${booth.number}`.includes("C") ? "VIP" : booth.bottles[0]['Region']
         const existingRegion: Region | undefined = regions.find((region) => region.name == regionName);
 
         if (existingRegion) {

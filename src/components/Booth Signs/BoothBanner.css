@@ -1,5 +1,5 @@
 * {
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
 }
 
@@ -26,12 +26,11 @@
   border-radius: 7px;
   filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
 } */
-
 h1 {
-  font-family: Komplekt;
-  line-height: .85;
-  font-size: 180pt;
+  font-family: BLOCK W1G;
+  line-height: 0.85;
   font-size: 215pt;
+  font-weight: 500;
   margin: 0;
   text-transform: uppercase;
   color: #b01b39;
@@ -39,9 +38,7 @@ h1 {
 
 p {
   margin: 0;
-  //font-size: 68pt;
   font-size: 88pt;
-  
 }
 
 .region {
@@ -55,16 +52,13 @@ p {
   justify-content: center;
   align-items: center;
   gap: 1.25in;
-
   height: 10in;
   width: 36in;
   padding-right: 1in;
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
-
   background-color: #ffffff;
-  //background-image: url("./src/assets/linen.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -78,13 +72,11 @@ p {
   flex: 1 1 auto;
 }
 
-
 .nameAndRegion {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  //gap: .25in;
 }
 
 .banner {
@@ -92,54 +84,54 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: .75in;
+  gap: 0.75in;
   background: #b01b39;
   min-width: 6in;
   height: 100%;
+  width: 6in;
+  overflow: hidden;
 }
 
 .tableNumContainer {
   display: flex;
   flex-direction: column;
   gap: 0;
-  //margin-bottom: 4px;
-
-  p {
-    font-weight: 600;
-    font-size: 90pt;
-    color: #ffffff;
-  }
-
-  .tableNum {
-    font-size: 235pt;
-    letter-spacing: -14pt;
-    font-weight: 400;
-    margin-top: 1in;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* background: #ffffff; */
-    color: #ffffff;
-    font-family: FAIRE Octave Trial;
-    /* font-style: italic; */
-  }
 }
-
+.tableNumContainer p {
+  font-weight: 600;
+  font-size: 90pt;
+  color: #ffffff;
+}
+.tableNumContainer .tableNum {
+  font-size: 235pt;
+  letter-spacing: -14pt;
+  font-weight: 400;
+  text-wrap: nowrap;
+  margin-top: 1in;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: #ffffff; */
+  color: #ffffff;
+  font-family: FAIRE Octave Trial;
+  /* font-style: italic; */
+}
 
 .qrcontainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: .35in;
+  gap: 0.35in;
   flex: 1 1 auto;
   margin-bottom: 2in;
 }
 
 .qr {
   width: 3.5in;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .scan-code {
@@ -148,39 +140,36 @@ p {
   text-align: center;
 }
 
-
 .bottles {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-end;
   flex: 1 1 auto;
-  gap: .2in;
-  //row-gap: .2in;
-  margin-top: .5in;
+  gap: 0.2in;
+  margin-top: 0.5in;
+  max-height: -moz-min-content;
   max-height: min-content;
-
-    p {
-    font-size: 36pt;
-    transform: translate(0px, -10px);
-  }
+}
+.bottles p {
+  font-size: 36pt;
+  transform: translate(0px, -10px);
 }
 
 .bottle {
+  height: -moz-min-content;
   height: min-content;
-
-  h2 {
-    padding: .25in .5in;
-    background: #898989;
-    border-radius: .35in;
-    color: white;
-
-    font-size: 40pt;
-    font-weight: 400;
-    margin: 0;
-    font-family: FAIRE Octave Trial;
-    text-align: left;
-  } 
+}
+.bottle h2 {
+  padding: 0.25in 0.5in;
+  background: #898989;
+  border-radius: 0.35in;
+  color: white;
+  font-size: 40pt;
+  font-weight: 400;
+  margin: 0;
+  font-family: FAIRE Octave Trial;
+  text-align: left;
 }
 
 #wine {
@@ -191,4 +180,4 @@ p {
   z-index: -20;
   opacity: 0.75;
   transform: rotateZ(180deg) rotateY(180deg);
-}
+}/*# sourceMappingURL=BoothBanner.css.map */

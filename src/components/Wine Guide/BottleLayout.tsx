@@ -1,4 +1,4 @@
-import { Bottle } from "../types";
+import { Bottle } from "../../types";
 
 
 interface props {
@@ -7,7 +7,7 @@ interface props {
 
 export function BottleLayout({ bottle }: props) {
     return <div className="bottle">
-        <h2>{bottle["Wine Name / Type"]}</h2>
+        <h2>{bottle["Wine_Name"]}</h2>
     </div>
 
 }
