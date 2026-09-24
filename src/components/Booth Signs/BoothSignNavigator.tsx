@@ -62,7 +62,7 @@ export default function BoothSignNavigator() {
     return pages
   }
 
-  return <div id="all">
+  return <div className='banner'>
     {/* consider slicing booths in pieces because html2pdf taps out around 25-35 pages */}
     {/* {getAllPages(regions).slice(slice.start, slice.end)} */}
     {pages && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined}

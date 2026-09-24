@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Booth, Bottle, Region } from '../../types.ts';
 import Clipboard from './Clipboard.tsx';
+import "./BoothClipboard.css"
 
 export default function ClipboardSignNavigator() {
   const [slice, setSlice] = useState({ start: 0, end: 20 })
@@ -48,25 +49,23 @@ export default function ClipboardSignNavigator() {
     fetchData();
   }, [])
 
-  useEffect(()=> {
+  useEffect(() => {
     setPages(getAllPages(booths))
   }, [booths])
-  
+
   const getAllPages = (booths: Booth[]): React.ReactElement[] => {
     const pages: React.ReactElement[] = []
     booths.forEach((booth, i) => {
-      
+
       pages.push(<Clipboard booth={booth} classAttr='' key={`${booth.number}`} regionLabel={booth.bottles[0].Region} ></Clipboard>)
     });
     return pages
   }
 
-  return <div id="all">
-    {/* consider slicing booths in pieces because html2pdf taps out around 25-35 pages */}
-    {/* {/* {getAllPages(regions)/* .slice(slice.start, slice.end) */}
-    {pages && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined}
-
-
-
-  </div >
+  return <>
+    <div className="clipboard">
+      {/* paginate because html2pdf taps out around 25-35 pages */}
+      {pages && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined}
+    </div >
+  </>
 }

@@ -1,0 +1,193 @@
+.clipboard {
+    * {
+        font-family: 'SF Pro Display', sans-serif;
+        text-wrap: pretty;
+        color: #b01b39
+    }
+
+    //#region debug styles
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #all {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .page,
+    .boothContainer {
+        // DEGUB STYLING
+        outline: 1px solid black;
+        //background-clip: content-box, padding-box;
+        background-color: white;
+        border-radius: 7px;
+        filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
+    }
+
+    //#endregion
+
+    h1 {
+        font-family: BLOCK W1G;
+        line-height: .85;
+        font-size: 68pt;
+        margin: 0;
+        text-transform: uppercase;
+
+        color: #b01b39
+    }
+
+    p {
+        margin: 0;
+        font-size: 38pt
+    }
+
+    .region {
+        font-family: FAIRE Octave Trial;
+        font-style: italic;
+    }
+
+    .boothContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        //gap: 1.25in;
+
+        height: 11in;
+        width: 8.5in;
+        padding: .75in;
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+
+        background-color: #ffffff;
+        background-image: url("./src/assets/linen.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        flex: 1 1 auto;
+    }
+
+
+    .nameAndRegion {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        //gap: .2in;
+    }
+
+    .banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1in;
+        width: 100%;
+        height: 200px;
+        margin-bottom: 50px;
+        //height: min-content;
+        //background: #b01b39;
+    }
+
+    .tableNum {
+        font-size: 140pt;
+        letter-spacing: -14pt;
+        font-weight: 400;
+        color: #b01b39;
+        font-family: FAIRE Octave Trial;
+        margin: 0;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        width: 5in;
+        overflow: hidden;
+    }
+
+
+    .qrcontainer {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 0.13in;
+        align-self: flex-end;
+
+        position: absolute;
+        top: 0.5in;
+        right: .5in;
+
+        p {
+            font-size: 14pt;
+            text-align: right;
+        }
+    }
+
+    .qr {
+        width: 1.5in;
+        object-fit: contain;
+    }
+
+    .scan-code {
+        color: #b01b39;
+        text-align: center;
+    }
+
+
+    .bottles {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-end;
+        flex: 1 1 auto;
+        gap: .15in;
+        //row-gap: .2in;
+        margin-top: .25in;
+        max-height: min-content;
+
+        p {
+            transform: translate(0px, -5px);
+            font-size: 18px;
+        }
+    }
+
+
+    h2 {
+        padding: .1in .25in;
+        //outline: 1.75px solid black;
+        color: white;
+        background: #b01b39;
+        border-radius: .15in;
+        max-width: 100%;
+
+
+        font-weight: 400;
+        margin: 0;
+        font-family: FAIRE Octave Trial;
+        text-align: left;
+    }
+
+    #wine {
+        width: 16in;
+        position: absolute;
+        bottom: -115px;
+        right: -160px;
+        z-index: -20;
+        opacity: 0.75;
+        transform: rotateZ(180deg) rotateY(180deg);
+    }
+}

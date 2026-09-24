@@ -58,9 +58,9 @@ export default function Clipboard({ booth, classAttr: position, regionLabel }: p
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    {booth.bottles[0].Is_VIP == "Yes"
+                    {/* booth.bottles[0].Is_VIP == "Yes"
                         ? undefined
-                        : <p className="region">{booth.bottles[0].Region}</p>
+                        :  */<p className="region">{booth.bottles[0].Region}</p>
                     }
                     <div className="bottles">
                         {booth.bottles.map((wine: Bottle, index) => {

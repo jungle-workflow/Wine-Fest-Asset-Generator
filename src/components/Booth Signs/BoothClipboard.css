@@ -1,0 +1,153 @@
+.clipboard * {
+  font-family: "SF Pro Display", sans-serif;
+  text-wrap: pretty;
+  color: #b01b39;
+}
+.clipboard body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.clipboard #all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.clipboard .page,
+.clipboard .boothContainer {
+  outline: 1px solid black;
+  background-color: white;
+  border-radius: 7px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.368627451)) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1882352941)) drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.262745098));
+}
+.clipboard h1 {
+  font-family: BLOCK W1G;
+  line-height: 0.85;
+  font-size: 68pt;
+  margin: 0;
+  text-transform: uppercase;
+  color: #b01b39;
+}
+.clipboard p {
+  margin: 0;
+  font-size: 38pt;
+}
+.clipboard .region {
+  font-family: FAIRE Octave Trial;
+  font-style: italic;
+}
+.clipboard .boothContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 11in;
+  width: 8.5in;
+  padding: 0.75in;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  background-image: url("./src/assets/linen.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.clipboard .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 1 auto;
+}
+.clipboard .nameAndRegion {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.clipboard .banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1in;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 50px;
+}
+.clipboard .tableNum {
+  font-size: 140pt;
+  letter-spacing: -14pt;
+  font-weight: 400;
+  color: #b01b39;
+  font-family: FAIRE Octave Trial;
+  margin: 0;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  width: 5in;
+  overflow: hidden;
+}
+.clipboard .qrcontainer {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.13in;
+  align-self: flex-end;
+  position: absolute;
+  top: 0.5in;
+  right: 0.5in;
+}
+.clipboard .qrcontainer p {
+  font-size: 14pt;
+  text-align: right;
+}
+.clipboard .qr {
+  width: 1.5in;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.clipboard .scan-code {
+  color: #b01b39;
+  text-align: center;
+}
+.clipboard .bottles {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex: 1 1 auto;
+  gap: 0.15in;
+  margin-top: 0.25in;
+  max-height: -moz-min-content;
+  max-height: min-content;
+}
+.clipboard .bottles p {
+  transform: translate(0px, -5px);
+  font-size: 18px;
+}
+.clipboard h2 {
+  padding: 0.1in 0.25in;
+  color: white;
+  background: #b01b39;
+  border-radius: 0.15in;
+  max-width: 100%;
+  font-weight: 400;
+  margin: 0;
+  font-family: FAIRE Octave Trial;
+  text-align: left;
+}
+.clipboard #wine {
+  width: 16in;
+  position: absolute;
+  bottom: -115px;
+  right: -160px;
+  z-index: -20;
+  opacity: 0.75;
+  transform: rotateZ(180deg) rotateY(180deg);
+}/*# sourceMappingURL=BoothClipboard.css.map */

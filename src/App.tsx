@@ -4,15 +4,14 @@ import ClipboardSignNavigator from './components/Booth Signs/ClipboardSignNaviga
 
 function App() {
   const navigate = useNavigate()
-  const location = useLocation()
-  const selectedPath = location.pathname === '/clipboard' ? '/clipboard' : '/banner'
 
   return <>
 
 
     <Routes>
       <Route path="/" element={<>
-        <select value={selectedPath} onChange={(event) => navigate(event.target.value)}>
+        <select value={"/"} onChange={(event) => navigate(event.target.value)}>
+          <option value="/">Select a route</option>
           <option value="/banner">Booth Sign - Banner</option>
           <option value="/clipboard">Booth Sign - Clipboard</option>
         </select>
