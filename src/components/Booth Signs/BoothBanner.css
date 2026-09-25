@@ -1,27 +1,27 @@
-.banner * {
+.booth-banner * {
   font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
 }
-.banner body {
+.booth-banner body {
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.banner #all {
+.booth-banner #all {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
-.banner .page,
-.banner .boothContainer {
+.booth-banner .page,
+.booth-banner .boothContainer {
   outline: 1px solid black;
   background-color: white;
   border-radius: 7px;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.368627451)) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1882352941)) drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.262745098));
 }
-.banner h1 {
+.booth-banner h1 {
   font-family: BLOCK W1G;
   line-height: 0.85;
   font-size: 215pt;
@@ -30,15 +30,15 @@
   text-transform: uppercase;
   color: #b01b39;
 }
-.banner p {
+.booth-banner p {
   margin: 0;
   font-size: 88pt;
 }
-.banner .region {
+.booth-banner .region {
   font-family: FAIRE Octave Trial;
   font-style: italic;
 }
-.banner .boothContainer {
+.booth-banner .boothContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -55,20 +55,20 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.banner .title {
+.booth-banner .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   flex: 1 1 auto;
 }
-.banner .nameAndRegion {
+.booth-banner .nameAndRegion {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
-.banner .banner {
+.booth-banner .banner {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,17 +80,17 @@
   width: 6in;
   overflow: hidden;
 }
-.banner .tableNumContainer {
+.booth-banner .tableNumContainer {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
-.banner .tableNumContainer p {
+.booth-banner .tableNumContainer p {
   font-weight: 600;
   font-size: 90pt;
   color: #ffffff;
 }
-.banner .tableNumContainer .tableNum {
+.booth-banner .tableNumContainer .tableNum {
   font-family: FAIRE Octave Trial;
   font-size: 235pt;
   letter-spacing: -14pt;
@@ -104,7 +104,7 @@
   width: 4in;
   overflow: hidden;
 }
-.banner .qrcontainer {
+.booth-banner .qrcontainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -113,17 +113,17 @@
   flex: 1 1 auto;
   margin-bottom: 2in;
 }
-.banner .qr {
+.booth-banner .qr {
   width: 3.5in;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.banner .scan-code {
+.booth-banner .scan-code {
   color: #ffffff;
   font-size: 40pt;
   text-align: center;
 }
-.banner .bottles {
+.booth-banner .bottles {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -134,15 +134,15 @@
   max-height: -moz-min-content;
   max-height: min-content;
 }
-.banner .bottles p {
+.booth-banner .bottles p {
   font-size: 36pt;
   transform: translate(0px, -10px);
 }
-.banner .bottle {
+.booth-banner .bottle {
   height: -moz-min-content;
   height: min-content;
 }
-.banner .bottle h2 {
+.booth-banner .bottle h2 {
   padding: 0.25in 0.5in;
   background: #898989;
   border-radius: 0.35in;
@@ -153,7 +153,7 @@
   font-family: FAIRE Octave Trial;
   text-align: left;
 }
-.banner #wine {
+.booth-banner #wine {
   width: 16in;
   position: absolute;
   bottom: -115px;

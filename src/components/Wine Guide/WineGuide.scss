@@ -315,6 +315,11 @@
       background: black;
       background: #b01b39;
       color: white;
+
+      width: 28pt;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-wrap: nowrap;
     }
   }
 
