@@ -1,4 +1,4 @@
-import { Region } from "../types"
+import { Region } from "../../types"
 
 interface props {
     region: Region,

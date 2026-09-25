@@ -1,0 +1,387 @@
+.wine-guide * {
+  font-family: "SF Pro Display", sans-serif;
+  text-wrap: pretty;
+}
+.wine-guide body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wine-guide #all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.wine-guide .page {
+  outline: 1px solid black;
+  background-color: white;
+  border-radius: 7px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.368627451)) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1882352941)) drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.262745098));
+}
+.wine-guide h1 {
+  font-family: BLOCK W1G;
+  font-size: 24px;
+  margin: 0;
+  text-transform: uppercase;
+  color: #b01b39;
+  max-width: 195px;
+}
+.wine-guide h2,
+.wine-guide .pageNumber {
+  font-size: 11.25pt;
+  font-weight: 400;
+  margin: 0;
+  font-family: FAIRE Octave Trial;
+}
+.wine-guide p {
+  margin: 0;
+}
+.wine-guide .region {
+  font-family: FAIRE Octave Trial;
+  font-style: italic;
+}
+.wine-guide .page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 8.75in;
+  width: 4in;
+  position: relative;
+  box-sizing: border-box;
+  /* NEEDS TO HAVE .25in BLEED */
+  padding: 0.125in;
+  background-color: #d4d4d4;
+  background-image: url("./src/assets/linen.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.wine-guide .regionCover {
+  background-image: url("./src/assets/Region-BG.png");
+}
+.wine-guide .regionCover h1 {
+  font-family: "Komplekt 070 Ultra TRIAL";
+  font-size: 34pt;
+  text-align: center;
+  width: -moz-min-content;
+  width: min-content;
+  max-width: none;
+  line-height: 0.9;
+}
+.wine-guide .regionCover p {
+  font-family: FAIRE Octave Display Trial;
+  font-style: italic;
+  font-size: 16pt;
+  color: #b01b39;
+}
+.wine-guide .regionCover hr {
+  height: 1.25px;
+  background: #b01b39;
+  color: #b01b39;
+  width: 90%;
+  border-radius: 50px;
+  margin: 0 0 5px 0;
+}
+.wine-guide .regionCover .content {
+  position: absolute;
+  bottom: 218px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.wine-guide .bleed {
+  all: inherit;
+  overflow: visible;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 0.125in;
+  box-sizing: border-box;
+  background: none;
+  filter: none;
+  box-shadow: none;
+  outline: 1px solid black;
+}
+.wine-guide .bleed.right {
+  flex-direction: row-reverse;
+}
+.wine-guide .bleedContent {
+  all: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0.15in 0.2in 0.2in;
+  box-sizing: border-box;
+  background: none;
+  filter: none;
+  box-shadow: none;
+  outline: 1px solid rgb(86, 230, 255);
+}
+.wine-guide .bleedContent.left {
+  padding-left: 0.15in;
+}
+.wine-guide .bleedContent.right {
+  padding-right: 0.15in;
+}
+.wine-guide .bleedContent.footerSpace {
+  padding: 0.15in 0.2in 0.75in;
+}
+.wine-guide .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  background: #b01b39;
+  width: 4in;
+  bottom: -0.125in;
+  left: -0.125in;
+  z-index: 0;
+  padding: 0 0.375in 9px;
+  box-sizing: border-box;
+}
+.wine-guide .footer.left {
+  padding: 0 0.3in 0.2in 0.55in;
+}
+.wine-guide .footer.right {
+  padding: 0 0.4in 0.2in 0.35in;
+}
+.wine-guide .footer p {
+  font-size: 9pt;
+  text-align: left;
+  width: 2in;
+  color: white;
+  font-family: "Faire Octave Trial";
+}
+.wine-guide .footer .pageNumber {
+  position: absolute;
+  bottom: 1in;
+  color: black;
+  width: -moz-min-content;
+  width: min-content;
+  font-size: 11.25pt;
+}
+.wine-guide .footer .pageNumber.left {
+  right: 0.35in;
+}
+.wine-guide .footer .pageNumber.right {
+  left: 0.35in;
+}
+.wine-guide .footer img {
+  width: 92px;
+  transform: translateY(5px);
+}
+.wine-guide .boothContainer {
+  height: -moz-min-content;
+  height: min-content;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;
+}
+.wine-guide .boothContainer .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.wine-guide .boothContainer .title .nameAndRegion {
+  width: 100%;
+}
+.wine-guide .boothContainer .banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: relative;
+  height: 40px;
+}
+.wine-guide .boothContainer .banner .monorail {
+  width: 58%;
+  padding-left: 10px;
+}
+.wine-guide .boothContainer .banner .qrcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+.wine-guide .boothContainer .banner .qr {
+  width: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.wine-guide .boothContainer .banner .scan-code {
+  color: #b01b39;
+  font-size: 11px;
+  width: 80px;
+  text-align: center;
+}
+.wine-guide {
+  /* .bot .bottle:last-child {
+      padding-bottom: 26px;
+  } */
+}
+.wine-guide .tableNumContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.wine-guide .tableNumContainer p {
+  font-weight: 600;
+  font-size: 12px;
+  color: #b01b39;
+}
+.wine-guide .tableNumContainer .tableNum {
+  font-size: 16px;
+  font-weight: 900;
+  /* height: 22px;
+  width: 22px; */
+  padding: 0px 3px 4px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  background: #b01b39;
+  color: white;
+}
+.wine-guide .bottles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* min-height: 2in;
+  max-height: 4in; */
+  flex: 1 1 auto;
+}
+.wine-guide .bottle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+}
+.wine-guide .bottle p {
+  font-size: 15px;
+  margin: 0;
+  font-weight: 400;
+}
+.wine-guide .bottle .details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+.wine-guide .bottle .wineID {
+  font-family: "Roboto Mono";
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 1px 4px;
+  padding-bottom: 3px;
+  background: #afafaf;
+  color: white;
+  border-radius: 4px;
+}
+.wine-guide .stars {
+  height: -moz-min-content;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wine-guide .stars .star {
+  width: 16px;
+  height: -moz-min-content;
+  height: min-content;
+}
+.wine-guide #wine {
+  width: 400px;
+  position: absolute;
+  bottom: -25px;
+  left: -160px;
+  z-index: 0;
+  opacity: 0.75;
+  transform: rotateZ(210deg);
+}
+.wine-guide .pageNumber {
+  position: absolute;
+  bottom: 0.1in;
+}
+.wine-guide .pageNumber.left {
+  right: 0.1in;
+}
+.wine-guide .pageNumber.right {
+  left: 0.1in;
+}
+.wine-guide .cropMark {
+  visibility: hidden;
+  position: absolute;
+}
+.wine-guide .cropMark.left {
+  left: 0;
+}
+.wine-guide .cropMark.right {
+  right: 0;
+}
+.wine-guide .cropMark.top {
+  top: 0;
+}
+.wine-guide .cropMark.bottom {
+  bottom: 0;
+}
+.wine-guide .spineGuides {
+  visibility: hidden;
+  height: 8.25in;
+  width: -moz-min-content;
+  width: min-content;
+  z-index: 20;
+}
+.wine-guide .advertisement {
+  z-index: 10;
+}
+.wine-guide .advertisement.half {
+  width: 100%;
+  visibility: hidden;
+  height: 3.75in;
+}
+.wine-guide .advertisement.full {
+  width: 4in;
+  position: absolute;
+  top: -0.25in;
+}
+.wine-guide .advertisement.left {
+  right: -0.25in;
+}
+.wine-guide .advertisement.right {
+  left: -0.25in;
+}
+.wine-guide .advertisement.absolute {
+  height: auto;
+  visibility: visible;
+  position: absolute;
+  width: 4in;
+}
+.wine-guide .advertisement.absolute.left {
+  right: -0.25in;
+}
+.wine-guide .advertisement.absolute.right {
+  left: -0.25in;
+}
+.wine-guide .advertisement.absolute.top {
+  top: -0.25in;
+}
+.wine-guide .advertisement.absolute.bot {
+  bottom: -0.25in;
+}/*# sourceMappingURL=WineGuide.css.map */

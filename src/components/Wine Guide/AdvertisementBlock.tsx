@@ -1,4 +1,4 @@
-import { Advertisement } from "../types"
+import { Advertisement } from "../../types"
 
 interface props {
     advertisement: Advertisement

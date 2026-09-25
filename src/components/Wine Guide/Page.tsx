@@ -22,7 +22,7 @@ export function Page({ slot1, pageNum, regionLabel }: props) {
             <img className="cropMark bottom right" src="./src/assets/crop-mark.png" />
 
             <div className={`bleedContent ${pageNum % 3 == 0 ? 'footerSpace' : ''}`}>
-                <BoothLayout booth={slot1 as Booth} classAttr="top" regionLabel={regionLabel} />
+                {slot1 ? <BoothLayout booth={slot1 as Booth} classAttr="top" regionLabel={regionLabel} /> : undefined}
 
 
             

@@ -46,7 +46,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
 
 
     return <>
-        <div className={`boothContainer ${position}`}>
+        {booth?.bottles ? <div className={`boothContainer ${position}`}>
 
             <div className='banner'>
                 <div className='tableNumContainer'>
@@ -78,6 +78,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
                 })}
             </div>
         </div>
+        : <p>No Bottles</p>}
     </>
 }
 
