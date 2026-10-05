@@ -11,26 +11,28 @@
     align-items: center;
   }
 
-  #all {
+  /* #all {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-  }
+  } */
 
-  .page {
+  /* .page {
     // DEGUB STYLING
     outline: 1px solid black;
     //background-clip: content-box, padding-box;
     background-color: white;
     border-radius: 7px;
     filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
-  }
+  } */
 
   h1 {
     font-family: BLOCK W1G;
     font-size: 24px;
+    line-height: 1;
     margin: 0;
+    padding-bottom: 5px;
     text-transform: uppercase;
     color: #b01b39;
     max-width: 195px;
@@ -307,7 +309,7 @@
       font-weight: 900;
       /* height: 22px;
       width: 22px; */
-      padding: 0px 3px 4px;
+      padding: 1px 3px 1px;
       border-radius: 5px;
       display: flex;
       align-items: center;
@@ -425,7 +427,7 @@
   }
 
   .spineGuides {
-    visibility: hidden;
+    visibility: visible;
     height: 8.25in;
     width: min-content;
     z-index: 20;

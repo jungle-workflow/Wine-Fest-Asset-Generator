@@ -52,18 +52,40 @@ export const groupBooths = (response: Bottle[]): Booth[] => {
     return booths
 }
 
+export const getMajorityRegion = (booth: Booth): string => {
+    const regionCounts = new Map<string, number>()
+    let majorityRegion: string | undefined
+    let majorityCount = 0
+
+    booth.bottles.forEach((bottle) => {
+        const count = (regionCounts.get(bottle.Region) ?? 0) + 1
+        regionCounts.set(bottle.Region, count)
+
+        if (count > majorityCount) {
+            majorityRegion = bottle.Region
+            majorityCount = count
+        }
+    })
+
+    if (majorityRegion === undefined) {
+        return booth.bottles[0].Region
+    }
+
+    return majorityRegion
+}
+
 export const groupRegions = (booths: Booth[]): Region[] => {
     const regions: Region[] = []
 
     booths.forEach((booth: Booth) => {
-        const regionName: string = `${booth.number}`.includes("C") ? "VIP" : booth.bottles[0]['Region']
-        const existingRegion: Region | undefined = regions.find((region) => region.name == regionName);
+        const regionSection: string = `${booth.number}`.includes("VIP") ? "VIP" : getMajorityRegion(booth)
+        const existingRegion: Region | undefined = regions.find((region) => region.name == regionSection);
 
         if (existingRegion) {
             existingRegion.booths.push(booth)
         } else {
             const region: Region = {
-                name: regionName,
+                name: regionSection,
                 booths: [booth]
             }
             regions.push(region)

@@ -1,4 +1,5 @@
 import { Booth, Bottle } from "../../types";
+import { getMajorityRegion } from "../../utils";
 import BottleLayout from './BottleLayout';
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react';
@@ -65,10 +66,8 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    {regionLabel == "VIP"
-                        ? undefined
-                        : <p className="region">{booth.bottles[0].Region}</p>
-                    }
+                    <p className="region">{getMajorityRegion(booth)}</p>
+                    {/* only display region if the region is shared between all bottles */}
                 </div>
             </div>
 
@@ -78,7 +77,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
                 })}
             </div>
         </div>
-        : <p>No Bottles</p>}
+            : <p>No Bottles</p>}
     </>
 }
 

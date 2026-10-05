@@ -23,6 +23,8 @@ export function AdvertisementBlock({ advertisement, pageNum, classAttr }: props)
                     : 'full'}
             ${pageNum % 2 == 0 ? "right" : "left"}`}
                 src={advertisement.src}></img> : undefined}
+
+        
     </>
 
 }

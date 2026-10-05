@@ -88,7 +88,7 @@ export default function WineGuide() {
       pages.push(
         <Page key={`page${region.name}${j}`}
           slot1={slot1}
-          /* slot2={slot2} */
+          slot2={slot2}
           regionLabel={region.name}
           pageNum={pageCounter++} />
       )
