@@ -75,7 +75,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    <p className="region">{boothRegion}</p> {/* only display region if the region is shared between all bottles */}
+                    <p className="region">{boothRegion ? boothRegion : regionLabel}</p> {/* only display region if the region is shared between all bottles */}
                 </div>
             </div>
 

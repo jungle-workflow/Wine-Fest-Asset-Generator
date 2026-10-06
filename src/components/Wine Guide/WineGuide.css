@@ -1,3 +1,9 @@
+.wine-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
 .wine-guide * {
   font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
@@ -7,14 +13,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.wine-guide {
-  /* #all {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  } */
 }
 .wine-guide .page {
   outline: 1px solid black;
