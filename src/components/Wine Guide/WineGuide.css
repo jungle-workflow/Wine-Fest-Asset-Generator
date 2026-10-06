@@ -15,19 +15,17 @@
     align-items: center;
     gap: 20px;
   } */
-  /* .page {
-    // DEGUB STYLING
-    outline: 1px solid black;
-    //background-clip: content-box, padding-box;
-    background-color: white;
-    border-radius: 7px;
-    filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
-  } */
+}
+.wine-guide .page {
+  outline: 1px solid black;
+  background-color: white;
+  border-radius: 7px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.368627451)) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1882352941)) drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.262745098));
 }
 .wine-guide h1 {
   font-family: BLOCK W1G;
   font-size: 24px;
-  line-height: 1;
+  line-height: 0.85;
   margin: 0;
   padding-bottom: 5px;
   text-transform: uppercase;
@@ -270,9 +268,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* min-height: 2in;
-  max-height: 4in; */
   flex: 1 1 auto;
+  max-height: 3.5in;
 }
 .wine-guide .bottle {
   display: flex;
@@ -280,10 +277,28 @@
   gap: 2px;
   flex: 1 1 auto;
 }
+.wine-guide .bottle h2 {
+  line-height: 1.25;
+}
+.wine-guide .bottle h4 {
+  font-size: 9.5pt;
+  font-family: FAIRE Octave Trial;
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  color: rgb(99, 99, 99);
+  /* padding: 1px 4px;
+  padding-right: 6px;
+  background: #afafaf;
+  color: white;
+  border-radius: 4px;
+  width: fit-content */
+}
 .wine-guide .bottle p {
   font-size: 15px;
-  margin: 0;
   font-weight: 400;
+  margin: 0;
 }
 .wine-guide .bottle .details {
   display: flex;
@@ -364,7 +379,7 @@
 .wine-guide .advertisement.half {
   width: 100%;
   visibility: hidden;
-  height: 3.75in;
+  height: 4in;
 }
 .wine-guide .advertisement.full {
   width: 4in;
@@ -381,7 +396,8 @@
   height: auto;
   visibility: visible;
   position: absolute;
-  width: 4in;
+  width: 3.9in;
+  max-height: 4.75in;
 }
 .wine-guide .advertisement.absolute.left {
   right: -0.25in;

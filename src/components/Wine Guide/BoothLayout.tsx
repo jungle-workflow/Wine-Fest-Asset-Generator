@@ -15,6 +15,7 @@ interface props {
 export function BoothLayout({ booth, classAttr: position, regionLabel }: props) {
 
     const [qr, setQr] = useState<string>()
+    const [boothRegion, setBoothRegion] = useState<string>()
 
     useEffect(() => {
         // Generate the QR code
@@ -44,6 +45,14 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
 
     }, [])
 
+    useEffect(() => {
+        const region = getMajorityRegion(booth, "Subregion").count >= 5
+            ? getMajorityRegion(booth, "Subregion").region
+            : getMajorityRegion(booth).region
+
+        setBoothRegion(region)
+    }, [booth])
+
 
 
     return <>
@@ -66,14 +75,13 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    <p className="region">{getMajorityRegion(booth)}</p>
-                    {/* only display region if the region is shared between all bottles */}
+                    <p className="region">{boothRegion}</p> {/* only display region if the region is shared between all bottles */}
                 </div>
             </div>
 
             <div className="bottles">
                 {booth.bottles.map((wine: Bottle, index) => {
-                    return <BottleLayout bottle={wine} key={index}></BottleLayout>
+                    return <BottleLayout bottle={wine} key={index} regionSection={regionLabel} regionOverride={boothRegion}></BottleLayout>
                 })}
             </div>
         </div>

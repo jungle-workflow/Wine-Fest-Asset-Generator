@@ -9,7 +9,7 @@ import { advertisements } from './Advertisements.ts';
 
 export default function WineGuide() {
   const [regions, setRegions] = useState<Region[]>([])
-  let pageCounter = 14;
+  let pageCounter = useRef(14)
   let advIndex = useRef(0)
   const [slice, setSlice] = useState({ start: 0, end: 20 })
   const [pages, setPages] = useState<any[]>([])
@@ -70,16 +70,13 @@ export default function WineGuide() {
     const pages: React.ReactElement[] = []
 
     while (boothIndex < region.booths.length) {
-      //console.log('j', j, region.name, boothIndex, advIndex.current)
-
       let slot1, slot2
-      let isFooterpage = pageCounter % 3 == 0
-
-      if (advIndex.current < advertisements.length && !isFooterpage && pageCounter % advInterval == 0) { // if we're out of advertisements, there's no need to evaluate if one needs to go there
-
-        slot2 = advertisements[advIndex.current++]
-        slot1 = slot2.isHalf ? region.booths[boothIndex++] : undefined // if slot 2 is full then undefined
-
+      let isFooterpage = pageCounter.current % 3 == 0
+      let queueAdv: boolean = pageCounter.current >= advertisements[advIndex.current]?.index // if the current page index is >= than the next advertisement target page, then slot the ad in
+      
+      if (queueAdv && !isFooterpage) {
+          slot2 = advertisements[advIndex.current++]
+          slot1 = slot2.isHalf ? region.booths[boothIndex++] : undefined // if slot 2 is full then undefined
       } else {
         slot1 = region.booths[boothIndex++]
         slot2 = region.booths[boothIndex++]
@@ -90,7 +87,7 @@ export default function WineGuide() {
           slot1={slot1}
           slot2={slot2}
           regionLabel={region.name}
-          pageNum={pageCounter++} />
+          pageNum={pageCounter.current++} />
       )
       j++
     }
@@ -102,9 +99,9 @@ export default function WineGuide() {
     const pages: React.ReactElement[] = []
     regions.forEach((region, i) => {
       if (region.name == "VIP") {
-        pages.push(<RegionCover region={region} index={i} pageNum={pageCounter++} />)
+        pages.push(<RegionCover region={region} index={i} pageNum={pageCounter.current++} />)
       }
-      pages.push(<RegionCover region={region} index={i} pageNum={pageCounter++} />)
+      pages.push(<RegionCover region={region} index={i} pageNum={pageCounter.current++} />)
       pages.push(...getRegionPages(region))
     });
     return pages

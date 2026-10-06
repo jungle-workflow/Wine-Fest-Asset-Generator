@@ -5,6 +5,7 @@ export type Bottle = {
     "Winery Name": string,
     Booth_Name: string,
     Wine_Name: string,
+    Subregion: string,
     Region: string,
     Price: number,
     Wine_ID: string,
@@ -29,10 +30,12 @@ export type Region = {
 export const kinds = {
     booth: 'booth',
     ad: 'ad',
+    empty: 'empty',
 }
 
 export type Advertisement = {
     src: string
     isHalf: boolean
     kind: string
+    index: number
 }
