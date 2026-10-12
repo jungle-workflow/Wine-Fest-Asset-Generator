@@ -69,12 +69,12 @@
   background-image: url("./src/assets/Region-BG.png");
 }
 .wine-guide .regionCover h1 {
-  font-family: "Komplekt 070 Ultra TRIAL";
+  font-family: BLOCK W1G;
   font-size: 34pt;
   text-align: center;
-  width: -moz-min-content;
-  width: min-content;
-  max-width: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 2.75in;
   line-height: 0.9;
 }
 .wine-guide .regionCover p {

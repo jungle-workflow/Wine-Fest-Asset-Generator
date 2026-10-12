@@ -130,7 +130,7 @@ export const save = (slice: any): Promise<void> => {
     return html2pdf(element, { // wine guide
         filename: `2026_wine-guide_${slice.start}-${slice.end}`,
         image: { type: 'png', quality: 1.0 },
-        html2canvas: { scale: 1 },
+        html2canvas: { scale: 2 },
         jsPDF: { unit: 'in', format: [4, 8.75], orientation: "portrait" }
     });
 }

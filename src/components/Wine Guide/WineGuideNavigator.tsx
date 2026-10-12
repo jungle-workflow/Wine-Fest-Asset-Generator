@@ -112,7 +112,7 @@ export default function WineGuide() {
   return <div className='wine-guide'>
     {/* consider slicing booths in pieces because html2pdf taps out around 25-35 pages */}
     {/* {/* {getAllPages(regions)/* .slice(slice.start, slice.end) */}
-    {pages /* && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined */}
+    {pages && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined}
 
 
 

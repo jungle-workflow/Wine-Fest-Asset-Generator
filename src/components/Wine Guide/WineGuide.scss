@@ -77,11 +77,11 @@
     background-image: url("./src/assets/Region-BG.png");
 
     h1 {
-      font-family: "Komplekt 070 Ultra TRIAL";
+      font-family: BLOCK W1G;
       font-size: 34pt;
       text-align: center;
-      width: min-content;
-      max-width: none;
+      width: fit-content;
+      max-width: 2.75in;
       line-height: .9;
     }
 
