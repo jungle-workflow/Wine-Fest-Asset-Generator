@@ -1,29 +1,29 @@
 .wine-guide {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 20px; */
 
   * {
     font-family: 'SF Pro Display', sans-serif;
     text-wrap: pretty;
   }
 
-  body {
+  /* body {
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 
-  .page {
+  /* .page {
     // DEGUB STYLING
     outline: 1px solid black;
     //background-clip: content-box, padding-box;
     background-color: white;
     border-radius: 7px;
     filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
-  }
+  } */
 
   h1 {
     font-family: BLOCK W1G;
@@ -251,7 +251,11 @@
       .monorail {
         width: 58%;
         //mix-blend-mode: multiply;
-        padding-left: 10px;
+        //padding-left: 10px;
+
+        &.left {
+          transform: scaleX(-1)
+        }
       }
 
       .qrcontainer {
@@ -260,11 +264,12 @@
         justify-content: flex-start;
         align-items: center;
         height: 100%;
+        gap: 2px;
 
       }
 
       .qr {
-        width: 60px;
+        width: 45px;
         object-fit: contain;
         //transform: translate(0px, 10px);
         //mix-blend-mode: multiply;
@@ -276,7 +281,7 @@
 
         //position: absolute;
         //bottom: -68px;
-        width: 80px;
+        width: 50px;
         //right: -4px;
         text-align: center;
       }
@@ -316,7 +321,7 @@
       background: #b01b39;
       color: white;
 
-      width: 28pt;
+      //width: 28pt;
       overflow: hidden;
       text-overflow: ellipsis;
       text-wrap: nowrap;

@@ -52,8 +52,8 @@ export default function WineGuide() {
         console.log("Error fetching data in useEffect");
       }
     };
-
     fetchData();
+
   }, [])
 
   useEffect(() => {
@@ -96,6 +96,8 @@ export default function WineGuide() {
   }
 
   const getAllPages = (regions: Region[]): React.ReactElement[] => {
+    pageCounter.current = 14
+    advIndex.current = 0
     const pages: React.ReactElement[] = []
     regions.forEach((region, i) => {
       if (region.name == "VIP") {
@@ -110,7 +112,7 @@ export default function WineGuide() {
   return <div className='wine-guide'>
     {/* consider slicing booths in pieces because html2pdf taps out around 25-35 pages */}
     {/* {/* {getAllPages(regions)/* .slice(slice.start, slice.end) */}
-    {pages && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined}
+    {pages /* && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined */}
 
 
 

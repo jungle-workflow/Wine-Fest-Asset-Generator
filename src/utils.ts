@@ -1,5 +1,4 @@
 import { Booth, Bottle, kinds, Region } from "./types";
-//@ts-ignore
 import html2pdf from 'html2pdf.js';
 
 export const fetchWineData = async (): Promise<Bottle[]> => {
@@ -112,19 +111,26 @@ export const getFontSize = (numElements: number) => {
     return Math.max(minValue, Math.min(maxValue, output));
 }
 
-export const save = (slice: any) => {
+export const save = (slice: any): Promise<void> => {
     // save the pdf
     console.log("saving");
 
-    const element = document.getElementById('all');
+    const element = document.querySelector<HTMLElement>('.wine-guide');
+    if (!element) {
+        throw new Error('Could not find the wine guide to export');
+    }
 
-    const pdfOptions = {
-        filename: `2025_booth-signs${slice.start}-${slice.end}`,
-        image: { type: 'jpg', quality: 0.98 },
+    /* return html2pdf(element, { // booth banner
+        filename: `2026_booth-signs_${slice.start}-${slice.end}`,
+        image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 1 },
-        jsPDF: { unit: 'in', format: [10, 36], orientation: "landscape" }
-    };
+        jsPDF: { unit: 'in', format: [10, 36], orientation: "landscape" } 
+    }); */
 
-    // Use the html2pdf function
-    html2pdf().from(element).set(pdfOptions).save();
+    return html2pdf(element, { // wine guide
+        filename: `2026_wine-guide_${slice.start}-${slice.end}`,
+        image: { type: 'png', quality: 1.0 },
+        html2canvas: { scale: 1 },
+        jsPDF: { unit: 'in', format: [4, 8.75], orientation: "portrait" }
+    });
 }

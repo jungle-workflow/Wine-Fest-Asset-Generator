@@ -1,24 +1,28 @@
 .wine-guide {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 20px; */
 }
 .wine-guide * {
   font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
 }
-.wine-guide body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.wine-guide .page {
-  outline: 1px solid black;
-  background-color: white;
-  border-radius: 7px;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.368627451)) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1882352941)) drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.262745098));
+.wine-guide {
+  /* body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
+  /* .page {
+    // DEGUB STYLING
+    outline: 1px solid black;
+    //background-clip: content-box, padding-box;
+    background-color: white;
+    border-radius: 7px;
+    filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
+  } */
 }
 .wine-guide h1 {
   font-family: BLOCK W1G;
@@ -209,7 +213,9 @@
 }
 .wine-guide .boothContainer .banner .monorail {
   width: 58%;
-  padding-left: 10px;
+}
+.wine-guide .boothContainer .banner .monorail.left {
+  transform: scaleX(-1);
 }
 .wine-guide .boothContainer .banner .qrcontainer {
   display: flex;
@@ -217,16 +223,17 @@
   justify-content: flex-start;
   align-items: center;
   height: 100%;
+  gap: 2px;
 }
 .wine-guide .boothContainer .banner .qr {
-  width: 60px;
+  width: 45px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 .wine-guide .boothContainer .banner .scan-code {
   color: #b01b39;
   font-size: 11px;
-  width: 80px;
+  width: 50px;
   text-align: center;
 }
 .wine-guide {
@@ -257,7 +264,6 @@
   background: black;
   background: #b01b39;
   color: white;
-  width: 28pt;
   overflow: hidden;
   text-overflow: ellipsis;
   text-wrap: nowrap;

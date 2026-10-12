@@ -10,9 +10,10 @@ interface props {
     //index: number,
     classAttr: string
     regionLabel: string
+    pageNum: number
 }
 
-export function BoothLayout({ booth, classAttr: position, regionLabel }: props) {
+export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }: props) {
 
     const [qr, setQr] = useState<string>()
     const [boothRegion, setBoothRegion] = useState<string>()
@@ -23,9 +24,11 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
             try {
                 const data = await QRCode.toDataURL(`junglejims.com/orderwine?booth=${booth.number}`, {
                     color: {
-                        dark: '#b01b39',  // Blue dots
-                        light: '#0000' // Transparent background
-                    }
+                        dark: '#b01b39', // dots
+                        light: '#0000',
+                    },
+                    margin: 0,
+                    errorCorrectionLevel: 'M',
                 })
                 return data
             } catch (err) {
@@ -64,7 +67,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
                     <span className='tableNum'>{booth.bottles[0]["Booth #"]}</span>
                 </div>
 
-                <img src='./src/assets/Monorail-Red.png' className='monorail'></img>
+                <img src='./src/assets/Monorail-Red.png' className={`monorail ${pageNum % 2 == 0 ? 'left' : 'right'}`}></img>
 
                 <div className='qrcontainer'>
                     <img className="qr" src={qr} />
@@ -75,7 +78,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel }: props) 
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    <p className="region">{boothRegion ? boothRegion : regionLabel}</p> {/* only display region if the region is shared between all bottles */}
+                    <p className="region">{boothRegion ? boothRegion : (regionLabel !== "VIP" ? regionLabel : getMajorityRegion(booth).region)}</p> {/* only display region if the region is shared between all bottles */}
                 </div>
             </div>
 
