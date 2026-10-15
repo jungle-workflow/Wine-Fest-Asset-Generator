@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Booth, Bottle, Region } from '../../types.ts';
 import BoothBanner from './Banner.tsx';
-import "./BoothBanner.css"
+import "./Banner.css"
 
-export default function BoothSignNavigator() {
+export default function BannerNavigator() {
   const [slice, setSlice] = useState({ start: 0, end: 20 })
   const [pages, setPages] = useState<any[]>([])
   const [booths, setBooths] = useState<Booth[]>([])

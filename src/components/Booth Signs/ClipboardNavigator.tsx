@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Booth, Bottle, Region } from '../../types.ts';
 import Clipboard from './Clipboard.tsx';
-import "./BoothClipboard.css"
+import "./Clipboard.css"
 
-export default function ClipboardSignNavigator() {
+export default function ClipboardNavigator() {
   const [slice, setSlice] = useState({ start: 0, end: 20 })
   const [pages, setPages] = useState<any[]>([])
   const [booths, setBooths] = useState<Booth[]>([])

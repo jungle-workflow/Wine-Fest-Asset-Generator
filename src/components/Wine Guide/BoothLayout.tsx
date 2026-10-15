@@ -22,7 +22,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
         // Generate the QR code
         const genQR = async () => {
             try {
-                const data = await QRCode.toDataURL(`junglejims.com/orderwine?booth=${booth.number}`, {
+                const data = await QRCode.toDataURL(`junglejims.com/orderwine?booth=${String(booth.number).split(' ').join('')}`, {
                     color: {
                         dark: '#b01b39', // dots
                         light: '#0000',

@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import BoothSignNavigator from "./components/Booth Signs/BoothSignNavigator"
-import ClipboardSignNavigator from './components/Booth Signs/ClipboardSignNavigator'
+import BannerNavigator from "./components/Booth Signs/BannerNavigator"
+import ClipboardNavigator from './components/Booth Signs/ClipboardNavigator'
 import WineGuide from './components/Wine Guide/WineGuideNavigator'
 
 function App() {
@@ -18,8 +18,8 @@ function App() {
           <option value="/guide">Wine Guide</option>
         </select>
       </>} />
-      <Route path="/banner" element={<BoothSignNavigator />} />
-      <Route path="/clipboard" element={<ClipboardSignNavigator />} />
+      <Route path="/banner" element={<BannerNavigator />} />
+      <Route path="/clipboard" element={<ClipboardNavigator />} />
       <Route path="/guide" element={<WineGuide />} />
     </Routes>
   </>

@@ -15,7 +15,7 @@ export type Bottle = {
 
 export type Booth = {
     name: string
-    number: string | number
+    number: string
     ID: string
     bottles: Bottle[]
     advImg?: string

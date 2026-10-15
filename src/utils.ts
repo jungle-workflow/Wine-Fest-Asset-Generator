@@ -27,7 +27,7 @@ export const groupBooths = (response: Bottle[]): Booth[] => {
 
     // Loop through the data and group by the key
     response.forEach((bottle: Bottle) => {
-        const boothNum: number = bottle["Booth #"]
+        const boothNum: string = String(bottle["Booth #"])
         const existingBooth: Booth | undefined = booths.find((booth) => booth.number == boothNum);
 
         if (existingBooth) {
@@ -36,7 +36,7 @@ export const groupBooths = (response: Bottle[]): Booth[] => {
             // If the section doesn't exist in the groupedData object, create it
             const booth: Booth = {
                 name: bottle["Booth_Name"],
-                number: bottle["Booth #"],
+                number: String(bottle["Booth #"]),
                 ID: bottle.Wine_ID,
                 bottles: [bottle],
                 kind: kinds.booth
