@@ -6,6 +6,7 @@ export type Bottle = {
     Booth_Name: string,
     Wine_Name: string,
     Subregion: string,
+    Country: string,
     Region: string,
     Price: number,
     Wine_ID: string,

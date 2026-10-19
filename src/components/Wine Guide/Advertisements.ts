@@ -1,19 +1,19 @@
 import { Advertisement, kinds } from "../../types";
 
-export const advertisements: Advertisement[] = [    
+export const advertisements: Advertisement[] = [
     {
         src: "./src/assets/2026_Vendor_Ads/jpg/ttg-BW.jpg",
         isHalf: true,
         kind: kinds.ad,
         index: 14
     },
-    { 
+    {
         src: "./src/assets/2026_Vendor_Ads/jpg/GALLO-BW.jpg",
         isHalf: false,
         kind: kinds.ad,
         index: 24
     },
-    { 
+    {
         src: "./src/assets/2026_Vendor_Ads/jpg/COHIBA-BW.jpg",
         isHalf: false,
         kind: kinds.ad,
@@ -25,18 +25,19 @@ export const advertisements: Advertisement[] = [
         kind: kinds.ad,
         index: 36
     },
-    { 
-        src: "./src/assets/2026_Vendor_Ads/jpg/Carbliss-BW.jpg",
+    {
+        src: "./src/assets/2026_Vendor_Ads/jpg/Dalho-BW.jpg",
         isHalf: false,
         kind: kinds.ad,
         index: 43
     },
     {
-        src: "./src/assets/2026_Vendor_Ads/jpg/Dalho-BW.jpg",
+        src: "./src/assets/2026_Vendor_Ads/jpg/Carbliss-BW.jpg",
         isHalf: false,
         kind: kinds.ad,
         index: 47
     },
+
     {
         src: "./src/assets/2026_Vendor_Ads/jpg/Firelands-BW.jpg",
         isHalf: true,
@@ -49,19 +50,19 @@ export const advertisements: Advertisement[] = [
         kind: kinds.ad,
         index: 55
     },
-    { 
+    {
         src: "./src/assets/2026_Vendor_Ads/jpg/Mariott-BW.png",
         isHalf: true,
         kind: kinds.ad,
         index: 58
     },
-    { 
+    {
         src: "./src/assets/2026_Vendor_Ads/jpg/Profundo-BW.jpg",
         isHalf: false,
         kind: kinds.ad,
         index: 60
     },
-    { 
+    {
         src: "./src/assets/2026_Vendor_Ads/jpg/FrescaHard-BW.jpg",
         isHalf: true,
         kind: kinds.ad,

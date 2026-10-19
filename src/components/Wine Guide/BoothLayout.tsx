@@ -51,7 +51,13 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
     useEffect(() => {
         const region = getMajorityRegion(booth, "Subregion").count >= 5
             ? getMajorityRegion(booth, "Subregion").region
-            : getMajorityRegion(booth).region
+            : getMajorityRegion(booth, "Country").count >= 5
+                ? getMajorityRegion(booth, "Country").region
+                : getMajorityRegion(booth).region
+
+            /*     const region = getMajorityRegion(booth, "Subregion").count >= 5
+            ? getMajorityRegion(booth, "Subregion").region
+            : getMajorityRegion(booth).region */
 
         setBoothRegion(region)
     }, [booth])
@@ -78,7 +84,14 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    <p className="region">{boothRegion ? boothRegion : (regionLabel !== "VIP" ? regionLabel : getMajorityRegion(booth).region)}</p> {/* only display region if the region is shared between all bottles */}
+                    <p className="region">{
+                        /* only display region if the region or country is shared between all bottles */
+                        boothRegion
+                            ? boothRegion
+                            : (regionLabel !== "VIP"
+                                ? regionLabel
+                                : getMajorityRegion(booth).region)
+                    }</p>
                 </div>
             </div>
 
