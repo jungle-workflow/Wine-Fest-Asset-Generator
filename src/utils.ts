@@ -73,6 +73,17 @@ export const getMajorityRegion = (booth: Booth, key: keyof Bottle = "Region"): {
     return {region: majorityRegion, count: majorityCount}
 }
 
+export const sortRegions = (regions: Region[]): Region[] => {
+    const regionOrder = ["Pacific Northwest", "California", "Finger Lakes", "Midwest", "VIP"]
+    return regions.sort((a, b) => {
+        const aIndex = regionOrder.indexOf(a.name)
+        const bIndex = regionOrder.indexOf(b.name)
+        const aOrder = aIndex === -1 ? 0 : aIndex + 1
+        const bOrder = bIndex === -1 ? 0 : bIndex + 1
+        return aOrder - bOrder
+    })
+}
+
 export const groupRegions = (booths: Booth[]): Region[] => {
     const regions: Region[] = []
 
@@ -90,10 +101,8 @@ export const groupRegions = (booths: Booth[]): Region[] => {
             regions.push(region)
         }
     })
-    // send Connoisseur to the back
-    const vipIndex = regions.map(region => region.name).indexOf('VIP')
-    const [vip] = regions.splice(vipIndex, 1)
-    regions.push(vip)
+    // organize regions in this order, default order for all regions not specifically mentioned: <unmatched regions>, "Pacific Northwest", "California", "Finger Lakes", "Midwest", "VIP"
+    sortRegions(regions)
 
     console.log("regions", regions)
     return regions

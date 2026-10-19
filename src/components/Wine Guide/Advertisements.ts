@@ -20,14 +20,14 @@ export const advertisements: Advertisement[] = [
         index: 30
     },
     {
-        src: "./src/assets/2026_Vendor_Ads/jpg/Svedka-Water-BW.jpg",
-        isHalf: true,
-        kind: kinds.ad,
-        index: 36
-    },
-    {
         src: "./src/assets/2026_Vendor_Ads/jpg/Dalho-BW.jpg",
         isHalf: false,
+        kind: kinds.ad,
+        index: 38
+    },
+    {
+        src: "./src/assets/2026_Vendor_Ads/jpg/Svedka-Water-BW.jpg",
+        isHalf: true,
         kind: kinds.ad,
         index: 43
     },
@@ -37,7 +37,6 @@ export const advertisements: Advertisement[] = [
         kind: kinds.ad,
         index: 47
     },
-
     {
         src: "./src/assets/2026_Vendor_Ads/jpg/Firelands-BW.jpg",
         isHalf: true,

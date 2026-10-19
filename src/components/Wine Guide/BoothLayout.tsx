@@ -49,9 +49,9 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
     }, [])
 
     useEffect(() => {
-        const region = getMajorityRegion(booth, "Subregion").count >= 5
+        const region = getMajorityRegion(booth, "Subregion").count >= 4
             ? getMajorityRegion(booth, "Subregion").region
-            : getMajorityRegion(booth, "Country").count >= 5
+            : getMajorityRegion(booth, "Country").count >= 4
                 ? getMajorityRegion(booth, "Country").region
                 : getMajorityRegion(booth).region
 
