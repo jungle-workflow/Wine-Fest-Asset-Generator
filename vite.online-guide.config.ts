@@ -7,6 +7,11 @@ export default defineConfig({
     outDir: 'dist-online-guide',
     rollupOptions: {
       input: 'online-guide.html',
+      output: {
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name][extname]',
+      },
     },
   },
 })
