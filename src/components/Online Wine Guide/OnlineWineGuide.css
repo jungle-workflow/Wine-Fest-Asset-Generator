@@ -17,23 +17,6 @@
   border-bottom: 2px solid #b01b39;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
-.online-wine-guide .regionNavigation button {
-  flex: 0 0 auto;
-  border: 0;
-  border-radius: 999px;
-  padding: 8px 14px;
-  background: #b01b39;
-  color: white;
-  font: inherit;
-  cursor: pointer;
-}
-.online-wine-guide .regionNavigation button:hover {
-  background: #86142b;
-}
-.online-wine-guide .regionNavigation button:focus-visible {
-  outline: 2px solid #222;
-  outline-offset: 2px;
-}
 .online-wine-guide * {
   font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
@@ -264,4 +247,33 @@
   /* max-height: 50svh;
   max-width: 25svw; */
   display: none;
+}
+.online-wine-guide .floatingButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  position: sticky;
+  bottom: 20px;
+  right: 20px;
+  pointer-events: none;
+}
+.online-wine-guide .floatingButtons button {
+  pointer-events: all;
+}
+.online-wine-guide .roundButton {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: #b01b39;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+.online-wine-guide .roundButton:hover {
+  background: #86142b;
+}
+.online-wine-guide .roundButton:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 2px;
 }/*# sourceMappingURL=OnlineWineGuide.css.map */

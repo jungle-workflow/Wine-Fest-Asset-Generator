@@ -116,6 +116,7 @@ export default function OnlineWineGuide() {
         <button
           key={region.name}
           type="button"
+          className='roundButton'
           style={{ display: region.name ? "flex" : "none" }}
           onClick={() => document.getElementById(region.name)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
         >
@@ -123,10 +124,13 @@ export default function OnlineWineGuide() {
         </button>
       ))}
     </nav>
-    {/* consider slicing booths in pieces because html2pdf taps out around 25-35 pages */}
-    {/* {/* {getAllPages(regions)/* .slice(slice.start, slice.end) */}
     {pages}
-
+    <div className='floatingButtons'>
+      <a href="https://cdn.prod.website-files.com/69d901034128ef51d50cd85b/6af2255d28dc149853ce1dbc_Web%20Map-Combined.avif" target='blank'>
+      <button className="roundButton" value="View Map">View Map</button>
+      </a>
+      <a href="https://junglejims.com/order" target='blank'><button className="roundButton" value="Order Wine">Order Wine</button></a>
+    </div>
 
 
 
