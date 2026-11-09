@@ -111,6 +111,17 @@ export default function OnlineWineGuide() {
   }
 
   return <div className='online-wine-guide'>
+    <nav className="regionNavigation" aria-label="Jump to wine region">
+      {regions.map((region) => (
+        <button
+          key={region.name}
+          type="button"
+          onClick={() => document.getElementById(region.name)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+        >
+          {region.name}
+        </button>
+      ))}
+    </nav>
     {/* consider slicing booths in pieces because html2pdf taps out around 25-35 pages */}
     {/* {/* {getAllPages(regions)/* .slice(slice.start, slice.end) */}
     {pages}

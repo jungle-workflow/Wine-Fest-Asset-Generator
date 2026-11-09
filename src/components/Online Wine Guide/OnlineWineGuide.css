@@ -4,6 +4,33 @@
   align-items: center;
   gap: 20px; */
 }
+.online-wine-guide .regionNavigation {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.95);
+}
+.online-wine-guide .regionNavigation button {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: #b01b39;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+.online-wine-guide .regionNavigation button:hover {
+  background: #86142b;
+}
+.online-wine-guide .regionNavigation button:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 2px;
+}
 .online-wine-guide * {
   font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
@@ -110,6 +137,7 @@
   justify-content: flex-start;
   padding: 12px;
   margin-top: 48px;
+  scroll-margin-top: 64px;
 }
 .online-wine-guide .boothContainer {
   height: -moz-min-content;

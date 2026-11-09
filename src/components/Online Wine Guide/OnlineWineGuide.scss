@@ -4,6 +4,37 @@
   align-items: center;
   gap: 20px; */
 
+    .regionNavigation {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, .95);
+
+        button {
+            flex: 0 0 auto;
+            border: 0;
+            border-radius: 999px;
+            padding: 8px 14px;
+            background: #b01b39;
+            color: white;
+            font: inherit;
+            cursor: pointer;
+
+            &:hover {
+                background: #86142b;
+            }
+
+            &:focus-visible {
+                outline: 2px solid #222;
+                outline-offset: 2px;
+            }
+        }
+    }
+
     * {
         font-family: 'SF Pro Display', sans-serif;
         text-wrap: pretty;
@@ -121,6 +152,7 @@
         justify-content: flex-start;
         padding: 12px;
         margin-top: 48px;
+        scroll-margin-top: 64px;
     }  
 
     .boothContainer {
