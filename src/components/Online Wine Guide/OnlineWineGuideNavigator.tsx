@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 import "./OnlineWineGuide.css"
-import { fetchWineData, format, groupBooths, groupRegions, save } from '../../utils.ts';
+import { fetchWineData, groupBooths, groupRegions } from '../../utils.ts';
 import { Bottle, Region } from '../../types.ts';
 import Page from './Page.tsx';
 import { advertisements } from './Advertisements.ts';
@@ -11,33 +11,7 @@ export default function OnlineWineGuide() {
   const [regions, setRegions] = useState<Region[]>([])
   let pageCounter = useRef(14)
   let advIndex = useRef(0)
-  const [slice, setSlice] = useState({ start: 0, end: 20 })
   const [pages, setPages] = useState<any[]>([])
-
-  /* useEffect(() => {
-    console.log(slice);
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key == 'ArrowRight') {
-        setSlice(prev => ({
-          start: prev.end,
-          end: prev.end + 20
-        }))
-      } else if (e.key == 'ArrowLeft') {
-        setSlice(prev => ({
-          start: Math.max(0, prev.start - 20),
-          end: prev.start
-        }));
-      } else if (e.key == "Enter") {
-        save((slice), format.guide);
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [slice]) */
 
   useEffect(() => {  // fetch the initial data and set the state
     const fetchData = async () => {
@@ -66,7 +40,6 @@ export default function OnlineWineGuide() {
     // It uses some logic to determine if a slot is approriate for an ad or a booth
     let boothIndex = 0
     let j = 0
-    const advInterval = 5
     const pages: React.ReactElement[] = []
 
     while (boothIndex < region.booths.length) {
