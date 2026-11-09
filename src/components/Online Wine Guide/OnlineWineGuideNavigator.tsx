@@ -116,6 +116,7 @@ export default function OnlineWineGuide() {
         <button
           key={region.name}
           type="button"
+          style={{ display: region.name ? "flex" : "none" }}
           onClick={() => document.getElementById(region.name)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
         >
           {region.name}

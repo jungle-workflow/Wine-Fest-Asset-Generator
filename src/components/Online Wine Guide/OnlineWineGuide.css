@@ -12,7 +12,10 @@
   gap: 8px;
   overflow-x: auto;
   padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(7px);
+  border-bottom: 2px solid #b01b39;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
 .online-wine-guide .regionNavigation button {
   flex: 0 0 auto;
@@ -140,14 +143,11 @@
   scroll-margin-top: 64px;
 }
 .online-wine-guide .boothContainer {
-  height: -moz-min-content;
-  height: min-content;
   position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* flex: 1 1 auto; */
 }
 .online-wine-guide .boothContainer .title {
   display: flex;
@@ -195,18 +195,16 @@
 .online-wine-guide .bottles {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex: 1 1 auto;
-  max-height: 3.5in;
+  gap: 6px;
 }
 .online-wine-guide .bottle {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  flex: 1 1 auto;
-}
-.online-wine-guide .bottle h2 {
-  line-height: 1.25;
+  /* gap: 2px;
+  flex: 1 1 auto; */
+  /* h2 {
+      line-height: 1.25;
+  } */
 }
 .online-wine-guide .bottle h4 {
   font-size: 9.5pt;
