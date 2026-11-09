@@ -8,10 +8,12 @@ export type Bottle = {
     Subregion: string,
     Country: string,
     Region: string,
+    Custom_Region: string,
     Price: number,
     Wine_ID: string,
     Is_VIP: string,
     Submitter_Email: string,
+    Exclude: boolean
 }
 
 export type Booth = {

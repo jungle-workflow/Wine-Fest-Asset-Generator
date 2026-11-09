@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
+import { fetchWineData, format, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Booth, Bottle, Region } from '../../types.ts';
 import Clipboard from './Clipboard.tsx';
 import "./Clipboard.css"
@@ -23,7 +23,7 @@ export default function ClipboardNavigator() {
           end: prev.start
         }));
       } else if (e.key == "Enter") {
-        save((slice));
+        save((slice), format.clipboard);
       }
     };
 

@@ -1,0 +1,241 @@
+.online-wine-guide {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; */
+}
+.online-wine-guide * {
+  font-family: "SF Pro Display", sans-serif;
+  text-wrap: pretty;
+}
+.online-wine-guide {
+  /* body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
+  /* .page {
+    // DEGUB STYLING
+    outline: 1px solid black;
+    //background-clip: content-box, padding-box;
+    background-color: white;
+    border-radius: 7px;
+    filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
+  } */
+}
+.online-wine-guide h1 {
+  font-family: BLOCK W1G;
+  font-size: 24px;
+  line-height: 0.85;
+  margin: 0;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  color: #b01b39;
+}
+.online-wine-guide h2,
+.online-wine-guide .pageNumber {
+  font-size: 11.25pt;
+  font-weight: 400;
+  margin: 0;
+  font-family: FAIRE Octave Trial;
+}
+.online-wine-guide p {
+  margin: 0;
+}
+.online-wine-guide img {
+  max-width: 400px;
+}
+.online-wine-guide .region {
+  font-family: FAIRE Octave Trial;
+  font-style: italic;
+}
+.online-wine-guide .page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* height: 8.75in;
+  width: 4in; */
+  position: relative;
+  box-sizing: border-box;
+  /* NEEDS TO HAVE .25in BLEED */
+  padding: 0.125in;
+  background-color: #d4d4d4;
+  /* background-image: url("./src/assets/linen.jpg") ;
+  background-position: center;
+  background-repeat: repeat; */
+  background-size: cover;
+  overflow: hidden;
+}
+.online-wine-guide .regionCover,
+.online-wine-guide .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100vw;
+  /* margin: 10px; */
+}
+.online-wine-guide .regionCover h1,
+.online-wine-guide .content h1 {
+  font-family: BLOCK W1G;
+  font-size: 34pt;
+  text-align: left;
+  width: 100%;
+  /* width: fit-content;
+  max-width: 2.75in; */
+  line-height: 0.9;
+}
+.online-wine-guide .regionCover p,
+.online-wine-guide .content p {
+  font-family: FAIRE Octave Display Trial;
+  font-style: italic;
+  font-size: 16pt;
+  color: #b01b39;
+}
+.online-wine-guide .regionCover hr,
+.online-wine-guide .content hr {
+  height: 1.25px;
+  background: #b01b39;
+  color: #b01b39;
+  width: 100svw;
+  border-radius: 50px;
+  margin: 0 0 5px 0;
+}
+.online-wine-guide .regionSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 12px;
+  margin-top: 48px;
+}
+.online-wine-guide .boothContainer {
+  height: -moz-min-content;
+  height: min-content;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* flex: 1 1 auto; */
+}
+.online-wine-guide .boothContainer .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+}
+.online-wine-guide .boothContainer .title .nameAndRegion {
+  width: 100%;
+}
+.online-wine-guide .boothContainer .banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: relative;
+  height: 40px;
+}
+.online-wine-guide .tableNumContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.online-wine-guide .tableNumContainer p {
+  font-weight: 600;
+  font-size: 12px;
+  color: #b01b39;
+}
+.online-wine-guide .tableNumContainer .tableNum {
+  font-size: 16px;
+  font-weight: 900;
+  padding: 1px 3px 1px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  background: #b01b39;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+.online-wine-guide .bottles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  max-height: 3.5in;
+}
+.online-wine-guide .bottle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+}
+.online-wine-guide .bottle h2 {
+  line-height: 1.25;
+}
+.online-wine-guide .bottle h4 {
+  font-size: 9.5pt;
+  font-family: FAIRE Octave Trial;
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  color: rgb(99, 99, 99);
+}
+.online-wine-guide .bottle p {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+}
+.online-wine-guide .bottle .details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+.online-wine-guide .bottle .wineID {
+  font-family: "Roboto Mono";
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 1px 4px;
+  padding-bottom: 3px;
+  background: #afafaf;
+  color: white;
+  border-radius: 4px;
+}
+.online-wine-guide .stars {
+  height: -moz-min-content;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.online-wine-guide .stars .star {
+  width: 16px;
+  height: -moz-min-content;
+  height: min-content;
+}
+.online-wine-guide #wine {
+  width: 400px;
+  position: absolute;
+  bottom: -25px;
+  left: -160px;
+  z-index: 0;
+  opacity: 0.75;
+  transform: rotateZ(210deg);
+}
+.online-wine-guide .advertisement {
+  /* max-height: 50svh;
+  max-width: 25svw; */
+  display: none;
+}/*# sourceMappingURL=OnlineWineGuide.css.map */

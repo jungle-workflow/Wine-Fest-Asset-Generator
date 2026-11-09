@@ -1,6 +1,7 @@
 import { Booth, Bottle } from "../../types";
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react';
+import { getMajorityRegion } from "../../utils";
 
 
 interface props {
@@ -10,7 +11,7 @@ interface props {
 }
 
 export default function Clipboard({ booth, classAttr: position, regionLabel }: props) {
-
+    const [region, setRegion] = useState<string>(regionLabel)
     const [qr, setQr] = useState<string>()
 
     useEffect(() => {
@@ -19,7 +20,7 @@ export default function Clipboard({ booth, classAttr: position, regionLabel }: p
 
         const genQR = async () => {
             try {
-                const data = await QRCode.toDataURL(`junglejims.com/orderwine?booth=${booth.number}`, {
+                const data = await QRCode.toDataURL(`junglejims.com/orderwine?booth=${String(booth.number).replace(/\s/g, "")}`, {
                     color: {
                         dark: '#b01b39',  // Blue dots
                         light: '#0000' // Transparent background
@@ -44,6 +45,26 @@ export default function Clipboard({ booth, classAttr: position, regionLabel }: p
 
     }, [])
 
+    useEffect(() => {
+        //console.log(getMajorityRegion(booth, "Custom_Region").count, getMajorityRegion(booth, "Custom_Region").region)
+        let region =
+            getMajorityRegion(booth, "Custom_Region").count >= 5 && getMajorityRegion(booth, "Custom_Region").region !== ''
+                ? getMajorityRegion(booth, "Custom_Region").region
+                : getMajorityRegion(booth, "Subregion").count >= 4
+                    ? getMajorityRegion(booth, "Subregion").region
+                    : getMajorityRegion(booth, "Country").count >= 4
+                        ? getMajorityRegion(booth, "Country").region
+                        : getMajorityRegion(booth).region
+        if (!region) {
+            region = regionLabel
+        }
+        setRegion(region)
+    }, [])
+
+    useEffect(() => {
+        console.log(region)
+    }, [region])
+
 
 
     return <>
@@ -60,7 +81,7 @@ export default function Clipboard({ booth, classAttr: position, regionLabel }: p
                     <h1>{booth.bottles[0].Booth_Name}</h1>
                     {/* booth.bottles[0].Is_VIP == "Yes"
                         ? undefined
-                        :  */<p className="region">{booth.bottles[0].Region}</p>
+                        :  */<p className="region">{region}</p>
                     }
                     <div className="bottles">
                         {booth.bottles.map((wine: Bottle, index) => {

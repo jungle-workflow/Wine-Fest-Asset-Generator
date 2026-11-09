@@ -3,24 +3,28 @@
   text-wrap: pretty;
   color: #b01b39;
 }
-.clipboard body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.clipboard #all {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+.clipboard {
+  /* body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #all {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+  } */
 }
 .clipboard .page,
 .clipboard .boothContainer {
-  outline: 1px solid black;
+  /* outline: 1px solid black;
+  //background-clip: content-box, padding-box;
   background-color: white;
   border-radius: 7px;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.368627451)) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1882352941)) drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.262745098));
+  filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043); */
 }
 .clipboard h1 {
   font-family: BLOCK W1G;

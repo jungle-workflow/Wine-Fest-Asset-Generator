@@ -44,20 +44,19 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
         }
 
         genQr2()
-
-
+        
     }, [])
 
     useEffect(() => {
-        const region = getMajorityRegion(booth, "Subregion").count >= 4
-            ? getMajorityRegion(booth, "Subregion").region
-            : getMajorityRegion(booth, "Country").count >= 4
-                ? getMajorityRegion(booth, "Country").region
-                : getMajorityRegion(booth).region
-
-            /*     const region = getMajorityRegion(booth, "Subregion").count >= 5
-            ? getMajorityRegion(booth, "Subregion").region
-            : getMajorityRegion(booth).region */
+        console.log(getMajorityRegion(booth, "Custom_Region").count, getMajorityRegion(booth, "Custom_Region").region)
+        const region =
+             getMajorityRegion(booth, "Custom_Region").count >= 5 && getMajorityRegion(booth, "Custom_Region").region !== ''
+                ? getMajorityRegion(booth, "Custom_Region").region
+                : getMajorityRegion(booth, "Subregion").count >= 4
+                    ? getMajorityRegion(booth, "Subregion").region
+                    : getMajorityRegion(booth, "Country").count >= 4
+                        ? getMajorityRegion(booth, "Country").region
+                        : getMajorityRegion(booth).region
 
         setBoothRegion(region)
     }, [booth])

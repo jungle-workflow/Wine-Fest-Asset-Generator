@@ -1,6 +1,7 @@
 import { Booth } from "../../types";
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react';
+import { getMajorityRegion } from "../../utils";
 
 
 interface props {
@@ -9,7 +10,8 @@ interface props {
     regionLabel: string
 }
 
-export function BoothBanner({ booth, classAttr: position }: props) {
+export function BoothBanner({ booth, classAttr: position, regionLabel }: props) {
+    const [region, setRegion] = useState<string>(regionLabel)
 
     const [qr, setQr] = useState<string>()
 
@@ -42,6 +44,26 @@ export function BoothBanner({ booth, classAttr: position }: props) {
 
     }, [])
 
+    useEffect(() => {
+            //console.log(getMajorityRegion(booth, "Custom_Region").count, getMajorityRegion(booth, "Custom_Region").region)
+            let region =
+                 getMajorityRegion(booth, "Custom_Region").count >= 5 && getMajorityRegion(booth, "Custom_Region").region !== ''
+                    ? getMajorityRegion(booth, "Custom_Region").region
+                    : getMajorityRegion(booth, "Subregion").count >= 4
+                        ? getMajorityRegion(booth, "Subregion").region
+                        : getMajorityRegion(booth, "Country").count >= 4
+                            ? getMajorityRegion(booth, "Country").region
+                            : getMajorityRegion(booth).region
+           if (!region) {
+            region = regionLabel
+           }
+            setRegion(region)
+        }, [])
+
+        useEffect(()=>{
+            console.log(region)
+        }, [region])
+
 
 
     return <>
@@ -63,10 +85,8 @@ export function BoothBanner({ booth, classAttr: position }: props) {
             <div className='title'>
                 <div className='nameAndRegion'>
                     <h1>{booth.bottles[0].Booth_Name}</h1>
-                    {booth.bottles[0].Is_VIP == "Yes"
-                        ? undefined
-                        : <p className="region">{booth.bottles[0].Region}</p>
-                    }
+                    <p className="region">{region}</p>
+                    
                 </div>
 
             </div>

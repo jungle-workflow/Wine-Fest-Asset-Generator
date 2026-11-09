@@ -6,7 +6,7 @@
     }
 
     //#region debug styles
-    body {
+    /* body {
         margin: 0;
         display: flex;
         flex-direction: column;
@@ -18,16 +18,16 @@
         flex-direction: column;
         align-items: center;
         gap: 20px;
-    }
+    } */
 
     .page,
     .boothContainer {
         // DEGUB STYLING
-        outline: 1px solid black;
+        /* outline: 1px solid black;
         //background-clip: content-box, padding-box;
         background-color: white;
         border-radius: 7px;
-        filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
+        filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043); */
     }
 
     //#endregion

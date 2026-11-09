@@ -371,7 +371,7 @@
   bottom: 0;
 }
 .wine-guide .spineGuides {
-  visibility: visible;
+  visibility: hidden;
   height: 8.25in;
   width: -moz-min-content;
   width: min-content;

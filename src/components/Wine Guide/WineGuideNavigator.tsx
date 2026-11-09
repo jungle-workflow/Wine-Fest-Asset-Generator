@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 import "./WineGuide.css"
-import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
+import { fetchWineData, format, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Bottle, Region } from '../../types.ts';
 import Page from './Page.tsx';
 import RegionCover from './RegionCover.tsx';
@@ -28,7 +28,7 @@ export default function WineGuide() {
           end: prev.start
         }));
       } else if (e.key == "Enter") {
-        save((slice));
+        save((slice), format.guide);
       }
     };
 

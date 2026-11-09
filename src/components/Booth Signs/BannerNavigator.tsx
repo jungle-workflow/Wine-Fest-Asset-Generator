@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
+import { fetchWineData, format, groupBooths, groupRegions, save } from '../../utils.ts';
 import { Booth, Bottle, Region } from '../../types.ts';
 import BoothBanner from './Banner.tsx';
 import "./Banner.css"
 
 export default function BannerNavigator() {
-  const [slice, setSlice] = useState({ start: 0, end: 20 })
+  const sliceIncriment = 5
+  const [slice, setSlice] = useState({ start: 0, end: sliceIncriment })
   const [pages, setPages] = useState<any[]>([])
   const [booths, setBooths] = useState<Booth[]>([])
+
 
   useEffect(() => {
     console.log(slice);
@@ -15,15 +17,15 @@ export default function BannerNavigator() {
       if (e.key == 'ArrowRight') {
         setSlice(prev => ({
           start: prev.end,
-          end: prev.end + 20
+          end: prev.end + sliceIncriment
         }))
       } else if (e.key == 'ArrowLeft') {
         setSlice(prev => ({
-          start: Math.max(0, prev.start - 20),
+          start: Math.max(0, prev.start - sliceIncriment),
           end: prev.start
         }));
       } else if (e.key == "Enter") {
-        save((slice));
+        save(slice, format.banner);
       }
     };
 
@@ -49,15 +51,15 @@ export default function BannerNavigator() {
     fetchData();
   }, [])
 
-  useEffect(()=> {
+  useEffect(() => {
     setPages(getAllPages(booths))
   }, [booths])
-  
+
   const getAllPages = (booths: Booth[]): React.ReactElement[] => {
     const pages: React.ReactElement[] = []
     booths.forEach((booth, i) => {
-      
-      pages.push(<BoothBanner booth={booth} classAttr='' regionLabel={booth.bottles[0].Region} ></BoothBanner>)
+
+      pages.push(<BoothBanner booth={booth} classAttr='' regionLabel={booth.bottles[0].Region} key={`booth${i}`}></BoothBanner>)
     });
     return pages
   }

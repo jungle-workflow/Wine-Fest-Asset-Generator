@@ -27,6 +27,7 @@ export const groupBooths = (response: Bottle[]): Booth[] => {
 
     // Loop through the data and group by the key
     response.forEach((bottle: Bottle) => {
+        if (bottle.Exclude) { return }
         const boothNum: string = String(bottle["Booth #"])
         const existingBooth: Booth | undefined = booths.find((booth) => booth.number == boothNum);
 
@@ -51,7 +52,7 @@ export const groupBooths = (response: Bottle[]): Booth[] => {
     return booths
 }
 
-export const getMajorityRegion = (booth: Booth, key: keyof Bottle = "Region"): {region: string, count: number} => {
+export const getMajorityRegion = (booth: Booth, key: keyof Bottle = "Region"): { region: string, count: number } => {
     const regionCounts = new Map<string, number>()
     let majorityRegion: string | undefined
     let majorityCount = 0
@@ -67,10 +68,10 @@ export const getMajorityRegion = (booth: Booth, key: keyof Bottle = "Region"): {
     })
 
     if (majorityRegion === undefined) {
-        return {region: String(booth.bottles[0][key]), count: 0}
+        return { region: String(booth.bottles[0][key]), count: 0 }
     }
 
-    return {region: majorityRegion, count: majorityCount}
+    return { region: majorityRegion, count: majorityCount }
 }
 
 export const sortRegions = (regions: Region[]): Region[] => {
@@ -119,27 +120,50 @@ export const getFontSize = (numElements: number) => {
     // Clamp the output
     return Math.max(minValue, Math.min(maxValue, output));
 }
-
-export const save = (slice: any): Promise<void> => {
+export const format = {
+    banner: "banner",
+    clipboard: "clipboard",
+    guide: "guide",
+}
+export const save = (slice: any, exportFormat: string): Promise<void> => {
     // save the pdf
     console.log("saving");
 
-    const element = document.querySelector<HTMLElement>('.wine-guide');
-    if (!element) {
-        throw new Error('Could not find the wine guide to export');
+    let selector = "", props = {}
+
+    if (exportFormat == format.banner) {
+        selector = '.booth-banner'
+        props = { // booth banner
+            filename: `2026_banners_${slice.start}-${slice.end}`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'in', format: [10, 36], orientation: "landscape" }
+        }
     }
 
-    /* return html2pdf(element, { // booth banner
-        filename: `2026_booth-signs_${slice.start}-${slice.end}`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 1 },
-        jsPDF: { unit: 'in', format: [10, 36], orientation: "landscape" } 
-    }); */
+    if (exportFormat == format.clipboard) {
+        selector = '.clipboard'
+        props = { // clipboard
+            filename: `2026_clipboards_${slice.start}-${slice.end}`,
+            image: { type: 'png', quality: 1.0 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: [8.5, 11], orientation: "portrait" }
+        }
+    }
 
-    return html2pdf(element, { // wine guide
-        filename: `2026_wine-guide_${slice.start}-${slice.end}`,
-        image: { type: 'png', quality: 1.0 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: [4, 8.75], orientation: "portrait" }
-    });
+    if (exportFormat == format.guide) {
+        selector = '.wine-guide'
+        props = { // wine guide
+            filename: `2026_wine-guide_${slice.start}-${slice.end}`,
+            image: { type: 'png', quality: 1.0 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: [4, 8.75], orientation: "portrait" }
+        }
+    }
+
+    const element = document.querySelector<HTMLElement>(selector);
+    if (!element) throw new Error(`Could not find the ${selector} to export`);
+
+    return html2pdf(element, props)
+
 }
