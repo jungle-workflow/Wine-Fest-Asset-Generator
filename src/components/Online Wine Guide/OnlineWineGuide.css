@@ -20,6 +20,7 @@
 .online-wine-guide * {
   font-family: "SF Pro Display", sans-serif;
   text-wrap: pretty;
+  line-height: unset;
 }
 .online-wine-guide {
   /* body {
