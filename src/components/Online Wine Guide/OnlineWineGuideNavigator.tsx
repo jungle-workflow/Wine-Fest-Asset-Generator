@@ -29,7 +29,9 @@ export default function OnlineWineGuide() {
         console.log("Error fetching data in useEffect");
       }
     };
+    console.log("v1.0")
     fetchData();
+
 
   }, [])
 
