@@ -71,6 +71,10 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
                     <p>BOOTH</p>
                     <span className='tableNum'>{booth.bottles[0]["Booth #"]}</span>
                 </div>
+                {/* <div className="addToCart">
+                    <img src="https://cdn.prod.website-files.com/69d901034128ef51d50cd85b/6af36680c63645761db528a4_add_shopping_cart_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"></img>
+                    <img src="https://cdn.prod.website-files.com/69d901034128ef51d50cd85b/6af368f1c63645761db657fc_add_circle_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"></img>
+                </div> */}
 
                 
             </div>

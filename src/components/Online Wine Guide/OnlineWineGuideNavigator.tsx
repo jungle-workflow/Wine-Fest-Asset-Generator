@@ -12,7 +12,7 @@ export default function OnlineWineGuide() {
   let pageCounter = useRef(14)
   let advIndex = useRef(0)
   const [pages, setPages] = useState<any[]>([])
-  const dateOfShow: Date = new Date("Tue Nov 14 2026 14:00:00 GMT-0500 (Eastern Standard Time)")
+  //const dateOfShow: Date = new Date("Tue Nov 14 2026 14:00:00 GMT-0500 (Eastern Standard Time)")
   //const dateOfShow: Date = new Date("Tue Nov 10 2026 12:36:31 GMT-0500 (Eastern Standard Time)")
   //console.log(dateOfShow)
 
@@ -105,12 +105,10 @@ export default function OnlineWineGuide() {
       <a href="https://cdn.prod.website-files.com/69d901034128ef51d50cd85b/6af2255d28dc149853ce1dbc_Web%20Map-Combined.avif">
         <button className="roundButton" value="View Map">View Map</button>
       </a>
-      {new Date() <= dateOfShow
+      < a href="https://www.eventbrite.com/cc/jungle-jims-international-wine-festival-3560789/?aff=escb&utm-campaign=social&utm-content=creatorshare&utm-medium=discovery&utm-source=cp&utm-term=odclsxcollection" target='blank'><button className="roundButton" value="Order Wine">Get Tickets</button></a>
+      {/* {new Date() <= dateOfShow
         ? < a href="https://www.eventbrite.com/cc/jungle-jims-international-wine-festival-3560789/?aff=escb&utm-campaign=social&utm-content=creatorshare&utm-medium=discovery&utm-source=cp&utm-term=odclsxcollection" target='blank'><button className="roundButton" value="Order Wine">Get Tickets</button></a>
-        : <a href="https://junglejims.com/order" target='blank'><button className="roundButton" value="Order Wine">Order Wine</button></a>}
+        : <a href="https://junglejims.com/order" target='blank'><button className="roundButton" value="Order Wine">Order Wine</button></a>} */}
     </div>
-
-
-
   </div >
 }

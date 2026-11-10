@@ -160,9 +160,9 @@
 
         .banner {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: flex-end;
-            //gap: 16px;
+            gap: 12px;
             width: 100%;
             position: relative;
             height: 40px;
@@ -300,23 +300,39 @@
     }
 
     .roundButton {
-            flex: 0 0 auto;
-            border: 0;
-            border-radius: 999px;
-            padding: 8px 14px;
-            background: #b01b39;
-            color: white;
-            font: inherit;
-            cursor: pointer;
+        flex: 0 0 auto;
+        border: 0;
+        border-radius: 999px;
+        padding: 8px 14px;
+        background: #b01b39;
+        color: white;
+        font: inherit;
+        cursor: pointer;
 
-            &:hover {
-                background: #86142b;
-            }
-
-            &:focus-visible {
-                outline: 2px solid #222;
-                outline-offset: 2px;
-            }
+        &:hover {
+            background: #86142b;
         }
+
+        &:focus-visible {
+            outline: 2px solid #222;
+            outline-offset: 2px;
+        }
+    }
+
+    /* .addToCart {
+        background: #b01b39;
+        border-radius: 6px;
+        height: 32px;
+        width: 32px;
+        padding: 5px; 
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+        }
+    } */
 
 }
