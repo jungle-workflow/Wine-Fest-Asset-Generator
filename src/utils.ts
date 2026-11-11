@@ -124,6 +124,7 @@ export const format = {
     banner: "banner",
     clipboard: "clipboard",
     guide: "guide",
+    slips: "slips",
 }
 export const save = (slice: any, exportFormat: string): Promise<void> => {
     // save the pdf
@@ -158,6 +159,16 @@ export const save = (slice: any, exportFormat: string): Promise<void> => {
             image: { type: 'png', quality: 1.0 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: [4, 8.75], orientation: "portrait" }
+        }
+    }
+
+    if (exportFormat == format.slips) {
+        selector = '.slips'
+        props = { // slips
+            filename: `2026_slips_${slice.start}-${slice.end}`,
+            image: { type: 'jpeg', quality: 1.0 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'in', format: [8.5, 11], orientation: "portrait" }
         }
     }
 

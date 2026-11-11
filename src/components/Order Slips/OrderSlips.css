@@ -1,0 +1,304 @@
+* {
+  font-family: "SF Pro Display", sans-serif;
+  text-wrap: pretty;
+}
+
+/* body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.page, .boothContainer {
+  // DEGUB STYLING
+  outline: 1px solid black;
+  //background-clip: content-box, padding-box;
+  background-color: white;
+  border-radius: 7px;
+  filter: drop-shadow(2px 2px 2px #0000005e) drop-shadow(3px 3px 4px #00000030) drop-shadow(4px 4px 9px #00000043);
+} */
+h1 {
+  font-family: Komplekt;
+  font-size: 20px;
+  margin: 0;
+  text-transform: uppercase;
+  color: #b01b39;
+  width: 100%;
+}
+
+h2, h3,
+.pageNumber {
+  font-size: 11.25pt;
+  font-weight: 400;
+  margin: 0;
+  font-family: FAIRE Octave Trial;
+}
+h2.bold, h3.bold,
+.pageNumber.bold {
+  font-weight: 900;
+}
+
+p {
+  margin: 0;
+}
+
+.region {
+  font-family: FAIRE Octave Trial;
+  font-style: italic;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 11in;
+  width: 4in;
+  position: relative;
+  box-sizing: border-box;
+  /* NEEDS TO HAVE .25in BLEED */
+  padding: 0.125in;
+  overflow: hidden;
+}
+
+.bleed {
+  all: inherit;
+  overflow: visible;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 0.125in;
+  box-sizing: border-box;
+  background: none;
+  filter: none;
+  box-shadow: none;
+  outline: 1px solid black;
+}
+.bleed.right {
+  flex-direction: row-reverse;
+}
+
+.bleedContent {
+  all: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0.15in 0.2in;
+  box-sizing: border-box;
+  background: none;
+  filter: none;
+  box-shadow: none;
+  outline: 1px solid rgb(86, 230, 255);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  background: rgba(176, 27, 57, 0.8666666667);
+  width: 4in;
+  bottom: -0.125in;
+  left: -0.125in;
+  z-index: 0;
+  padding: 0 0.375in 9px;
+  box-sizing: border-box;
+}
+.footer.left {
+  padding-left: 0 0.5in 10px 0.375in;
+}
+.footer.right {
+  padding-right: 0 0.375in 10px 0.5in;
+}
+.footer p {
+  font-size: 9pt;
+  text-align: left;
+  width: 2in;
+  color: white;
+  font-family: "Faire Octave Trial";
+}
+.footer .pageNumber {
+  width: -moz-min-content;
+  width: min-content;
+  position: relative;
+  font-size: 12pt;
+}
+.footer img {
+  width: 100px;
+  transform: translateY(5px);
+}
+
+.boothContainer {
+  height: -moz-min-content;
+  height: min-content;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;
+}
+.boothContainer .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.boothContainer .title .nameAndRegion {
+  width: 100%;
+}
+.boothContainer .banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: relative;
+  height: 40px;
+}
+.boothContainer .banner .monorail {
+  width: 58%;
+  padding-left: 10px;
+}
+.boothContainer .banner .qrcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+.boothContainer .banner .qr {
+  width: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.boothContainer .banner .scan-code {
+  color: #b01b39;
+  font-size: 11px;
+  width: 80px;
+  text-align: center;
+}
+
+/* .bot .bottle:last-child {
+    padding-bottom: 26px;
+} */
+.tableNumContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tableNumContainer p {
+  font-weight: 600;
+  font-size: 12px;
+  color: #b01b39;
+}
+.tableNumContainer .tableNum {
+  font-size: 16px;
+  font-weight: 900;
+  /* height: 22px;
+    width: 22px; */
+  padding: 0px 3px 1px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  background: #b01b39;
+  color: white;
+}
+
+.bottles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* min-height: 2in;
+  max-height: 4in; */
+  flex: 1 1 auto;
+}
+
+.bottle {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+.bottle p {
+  font-size: 15px;
+  margin: 0;
+  font-weight: 400;
+}
+.bottle .details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+.bottle .wineID {
+  font-family: "Roboto Mono";
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 1px 4px;
+  background: #afafaf;
+  color: white;
+  border-radius: 4px;
+}
+
+#wine {
+  width: 400px;
+  position: absolute;
+  bottom: -25px;
+  left: -160px;
+  z-index: 0;
+  opacity: 0.75;
+  transform: rotateZ(210deg);
+}
+
+.pageNumber {
+  position: absolute;
+  bottom: 0.1in;
+}
+.pageNumber.left {
+  right: 0.1in;
+}
+.pageNumber.right {
+  left: 0.1in;
+}
+
+.cropMark {
+  position: absolute;
+}
+.cropMark.left {
+  left: 0;
+}
+.cropMark.right {
+  right: 0;
+}
+.cropMark.top {
+  top: 0;
+}
+.cropMark.bottom {
+  bottom: 0;
+}
+
+.spineGuides {
+  height: 8.25in;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.buyerIdBox {
+  background: #ececec;
+}/*# sourceMappingURL=OrderSlips.css.map */
