@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 //@ts-ignore
 import "./OrderSlips.css"
-import { fetchWineData, format, groupBooths, save } from '../../utils.ts';
-import { Booth, Bottle } from '../../types.ts';
+import { fetchWineData, groupBooths, save } from '../../utils.ts';
+import { Booth, Bottle, saveFormat } from '../../types.ts';
 import Page from './Page.tsx';
 
 export default function OrderSlipNavigator() {
@@ -24,7 +24,7 @@ export default function OrderSlipNavigator() {
           end: prev.start
         }));
       } else if (e.key == "Enter") {
-        save((slice), format.slips);
+        save((slice), saveFormat.slips);
       }
     };
 

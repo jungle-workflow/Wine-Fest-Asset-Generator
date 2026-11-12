@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { fetchWineData, format, groupBooths, groupRegions, save } from '../../utils.ts';
-import { Booth, Bottle, Region } from '../../types.ts';
+import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
+import { Booth, Bottle, saveFormat, Region } from '../../types.ts';
 import BoothBanner from './Banner.tsx';
 import "./Banner.css"
 
@@ -25,7 +25,7 @@ export default function BannerNavigator() {
           end: prev.start
         }));
       } else if (e.key == "Enter") {
-        save(slice, format.banner);
+        save(slice, saveFormat.banner);
       }
     };
 

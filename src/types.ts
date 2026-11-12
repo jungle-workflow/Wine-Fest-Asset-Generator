@@ -42,3 +42,62 @@ export type Advertisement = {
     kind: string
     index: number
 }
+
+export type BuyerOrder = {
+    "Timestamp": string
+    "Buyer's Club #": string
+    "Wine ID": number
+    "Quantity": number
+    "Booth": number
+    "Err?": number
+    "First / Last": string
+    "Variety": string
+    "Winery": string
+    "Distributor": string
+    "Wine Price": number
+    "Total": number
+    "Transaction ID": number
+    "Pickup Location": string
+    "Phone": string
+    "Email": string
+}
+
+export type Buyer = {
+    "Buyer's Club Number": string
+    "Buyer name": string
+    "Phone": string
+    "Email": string
+    "Pickup Location": string
+    orders: BuyerOrder[]
+}
+
+export type Distributor = {
+    name: string
+    buyerOrders: BuyerOrder[]
+    distributorOrders: DistributorOrder[]
+    contact?: string
+    phone?: string
+    email?: string
+}
+
+export type DistributorOrder = {
+    winery: string
+    variety: string
+    price: number
+    quantity: number
+    total: number
+    pickupLocation: string
+}
+
+export type Slice = {
+    start: number,
+    end: number
+}
+
+export const saveFormat = {
+    banner: "banner",
+    clipboard: "clipboard",
+    guide: "guide",
+    slips: "slips",
+    spreadsheet: "spreadsheet",
+}
