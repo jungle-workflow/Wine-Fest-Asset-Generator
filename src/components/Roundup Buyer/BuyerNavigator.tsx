@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 //@ts-ignore
 import "./BuyerReceipts.css"
-import { fetchOrderData, groupDistributors, groupOrders, paginate, save } from '../../utils.ts';
-import { Buyer, Distributor, BuyerOrder, saveFormat, Slice } from '../../types.ts';
+import { assembleBuyerList, fetchOrderData, paginate } from '../../utils.ts';
+import { Buyer, Slice } from '../../types.ts';
 import BuyerReceipts from './BuyerReceipts.tsx';
 
 export default function BuyerNavigator() {
@@ -11,17 +11,12 @@ export default function BuyerNavigator() {
 
 
   useEffect(() => {  // fetch the initial data and set the state
-    const fetchData = async () => { // buyer's club orders
-      try {
-        const data: BuyerOrder[] = await fetchOrderData();
-        const sortedBuyers: Buyer[] = groupOrders(data)
-        console.log(sortedBuyers)
-        setBuyers(sortedBuyers)
-      } catch {
-        console.log("Error fetching data in useEffect");
-      }
-    };
-
+    const fetchData = async () => {
+      const data = await fetchOrderData();
+      const allBuyers = assembleBuyerList(data)
+      const buyersList = Object.entries(allBuyers).map(([_, buyer]) => buyer);
+      setBuyers(buyersList)
+    }
     fetchData();
 
   }, [])

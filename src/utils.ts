@@ -1,4 +1,4 @@
-import { Booth, Bottle, Buyer, BuyerOrder, Distributor, DistributorOrder, saveFormat, kinds, Region, Slice } from "./types";
+import { Booth, Bottle, Buyer, Distributor, DistributorOrder, saveFormat, kinds, Region, Slice, routes, RawRecord, BuyerAction, BuyerFormSubmit, UpdateCart } from "./types";
 import html2pdf from 'html2pdf.js';
 
 export const fetchWineData = async (): Promise<Bottle[]> => {
@@ -19,18 +19,36 @@ export const fetchWineData = async (): Promise<Bottle[]> => {
     }
 }
 
-export const fetchOrderData = async (): Promise<BuyerOrder[]> => {
+
+export const fetchOrderData = async (): Promise<BuyerAction[]> => {
     try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzX0BP7m5JaJvgW7C6jWwaaPSfqeKjvcZOVFZSkqZYPqzOQJcyk2iCm8kwZtdtqbTy6/exec");
-        //const response = await fetch("/src/assets/data.json");
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz4yrN6sQF9b1foeOmfD_5lvrrghd0MAqXRwcsy-Bv-l12XdChOGnbIzMwkVV2YHMFcRA/exec",
+            {
+                redirect: "follow",
+                method: "POST",
+                body: JSON.stringify({
+                    action: routes.getBuyers,
+                }),
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                }
+            }
+        )
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        const orderData = data.data
-        console.log(orderData);
+        var data = await response.json();
+        //console.log(data);
 
-        return orderData as BuyerOrder[]
+        var rawBuyerData = data.buyerData as RawRecord[]
+        const parsedBuyerActions: BuyerAction[] = []
+
+        for (const record of rawBuyerData) {
+            parsedBuyerActions.push(JSON.parse(record.Data).body)
+        }
+
+        return parsedBuyerActions
+
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
         throw error; // Ensure the error is propagated if necessary 
@@ -168,83 +186,55 @@ export const groupRegions = (booths: Booth[]): Region[] => {
     return regions
 }
 
-export const groupOrders = (response: BuyerOrder[]): Buyer[] => {
-    // take in the json response and return an object containing each section as an array of items in that section
-    // Assuming your data is in an array of objects
-    // Initialize an empty object to store the grouped data
-    const buyers: Buyer[] = []
-
-    // Loop through the data and group by the key
-    response.forEach((order: BuyerOrder) => {
-        const orderBuyerNum: string = order["Buyer's Club #"]
-        const existingBuyer: Buyer | undefined = buyers.find((buyer) => buyer["Buyer's Club Number"] == orderBuyerNum);
-
-        if (existingBuyer) {
-            existingBuyer.orders.push(order)
-        } else {
-            // If the section doesn't exist in the groupedData object, create it
-            const buyer: Buyer = {
-                "Buyer's Club Number": orderBuyerNum,
-                "Buyer name": order["First / Last"],
-                "Phone": order.Phone,
-                "Email": order.Email,
-                "Pickup Location": order["Pickup Location"],
-                orders: [order]
-            }
-            buyers.push(buyer)
-        }
-    });
-    const sortedbuyers = buyers.sort((a, b) => a["Buyer name"].localeCompare(b["Buyer name"]))
-    return sortedbuyers
-}
-
-export const groupDistributors = (response: BuyerOrder[]): Distributor[] => {
+export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
+    // receiving a complete list of buyers with carts, evaluate the distributors and their quantities and totals
     const distributors: Distributor[] = []
+    const distributorEntries = new Map<string, {
+        distributor: Distributor
+        ordersByWineAndStore: Map<string, DistributorOrder>
+    }>()
 
-    // Loop through the data and group by the key
-    response.forEach((order: BuyerOrder) => {
-        const distName: string = order.Distributor
-        const existingDist: Distributor | undefined = distributors.find((distributor) => distributor.name == distName);
+    buyers.forEach((buyer) => {
+        Object.values(buyer.cart ?? {}).forEach((wine) => {
+            const quantity = Number(wine.quantity)
+            if (!Number.isFinite(quantity) || quantity <= 0) return
 
-        if (existingDist) {
-            existingDist.buyerOrders.push(order)
-            existingDist.buyerOrders.sort((a, b) => a["First / Last"].localeCompare(b["First / Last"]))
-            // get the existing distributor order in distributor orders
+            const distributorName = wine["Distributor Name"]
+            let distributorEntry = distributorEntries.get(distributorName)
 
-            const existingDorder: DistributorOrder | undefined = existingDist.distributorOrders.find((dorder) => dorder.variety == order.Variety && dorder.pickupLocation == order["Pickup Location"])
-            if (existingDorder) {
-                // if found, add quantity to existing quantity and recalulate total
-                existingDorder.quantity += order.Quantity
-                existingDorder.total += order.Total
+            if (!distributorEntry) {
+                const distributor: Distributor = {
+                    name: distributorName,
+                    distributorOrders: []
+                }
+                distributorEntry = {
+                    distributor,
+                    ordersByWineAndStore: new Map()
+                }
+                distributorEntries.set(distributorName, distributorEntry)
+                distributors.push(distributor)
+            }
+
+            const orderKey = JSON.stringify([wine.Wine_ID, buyer.store])
+            const existingOrder = distributorEntry.ordersByWineAndStore.get(orderKey)
+
+            if (existingOrder) {
+                existingOrder.quantity += quantity
+                existingOrder.total = existingOrder.price * existingOrder.quantity
             } else {
-                // if not found, append new order
-                existingDist.distributorOrders.push({
-                    winery: order.Winery,
-                    variety: order.Variety,
-                    price: order["Wine Price"],
-                    quantity: order.Quantity,
-                    total: order.Total,
-                    pickupLocation: order["Pickup Location"]
-                })
+                const order: DistributorOrder = {
+                    winery: wine["Winery Name"],
+                    variety: wine.Wine_Name,
+                    price: wine.Price,
+                    quantity,
+                    total: wine.Price * quantity,
+                    pickupLocation: buyer.store
+                }
+                distributorEntry.distributor.distributorOrders.push(order)
+                distributorEntry.ordersByWineAndStore.set(orderKey, order)
             }
-        } else {
-            // If the section doesn't exist in the groupedData object, create it
-            const distributor: Distributor = {
-                name: distName,
-                buyerOrders: [order],
-                distributorOrders: [{
-                    winery: order.Winery,
-                    variety: order.Variety,
-                    price: order["Wine Price"],
-                    quantity: order.Quantity,
-                    total: order.Total,
-                    pickupLocation: order["Pickup Location"]
-                }]
-            }
-            distributors.push(distributor)
-        }
-    });
-    console.log('distributors', distributors);
+        })
+    })
 
     return distributors
 }
@@ -298,3 +288,45 @@ export const paginate = (e: KeyboardEvent, slice: Slice, setSlice: React.Dispatc
         save((slice), saveFormat.spreadsheet);
     }
 };
+
+export function assembleBuyerList(buyerActions: BuyerAction[]): Record<string, Buyer> {
+    // calculates the carts of all buyers based on each buyer's actions that they submitted, such as selecting new wines or modifying the quantities in their cart
+    console.log(buyerActions)
+    const allBuyers: Record<string, Buyer> = {}
+    for (let action of buyerActions) {
+        const buyer = action.buyer
+        if (!allBuyers[buyer.buyerId]) {
+            allBuyers[buyer.buyerId] = buyer
+            allBuyers[buyer.buyerId].cart = {};
+        }
+        console.log("Buyer:", buyer)
+
+        let cart = allBuyers[buyer.buyerId].cart
+        if (cart) {
+            // check if it is a order that is valid and should be evaluated, then flatten the wines in the order to the buyer's collection of orders
+            if (action.action == routes.orderWine) { // if route is for submitting a new order
+                action = action as BuyerFormSubmit
+                const selectedWines = action.order && action.order.selectedWines;
+                for (const wine of selectedWines) {
+                    const existingWine: Bottle | undefined = cart[wine.Wine_ID]
+                    if (existingWine) {
+                        existingWine.quantity = Number(existingWine.quantity) + Number(wine.quantity);
+                    } else {
+                        cart[wine.Wine_ID] = wine
+                    }
+                }
+            }
+            if (action.action == routes.updateCart) { // if route is for revising an item (particularly quantity)
+                // replace the existing wine with the new wine object, which should have the updated quantity
+                action = action as UpdateCart
+                if (action.updatedWine && action.updatedWine.Wine_ID) {
+                    cart[action.updatedWine.Wine_ID] = action.updatedWine
+                }
+            }
+        } else {
+            console.log("Something fishy here worth investigating")
+        }
+    }
+    console.log(allBuyers)
+    return allBuyers
+}
