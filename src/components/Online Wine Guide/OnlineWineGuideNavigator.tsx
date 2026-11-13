@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 import "./OnlineWineGuide.css"
 import { fetchWineData, groupBooths, groupRegions } from '../../utils.ts';
-import { Bottle, Region } from '../../types.ts';
+import { Wine, Region } from '../../types.ts';
 import Page from './Page.tsx';
 import { advertisements } from './Advertisements.ts';
 import RegionCover from './RegionCover.tsx';
@@ -20,7 +20,7 @@ export default function OnlineWineGuide() {
     const fetchData = async () => {
       try {
         //console.log("Fetching data");
-        const data: Bottle[] = await fetchWineData();
+        const data: Wine[] = await fetchWineData();
         const sortedData: Region[] = groupRegions(groupBooths(data));
         console.log(sortedData)
         //setBooths(sortedData);

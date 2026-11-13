@@ -1,8 +1,8 @@
-import { Bottle } from "../../types";
+import { Wine } from "../../types";
 
 
 interface props {
-    bottle: Bottle
+    bottle: Wine
 }
 
 export function BottleLayout({ bottle }: props) {

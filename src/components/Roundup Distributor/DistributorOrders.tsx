@@ -1,5 +1,5 @@
 import React from 'react';
-import { Buyer, Distributor } from '../../types';
+import { Distributor } from '../../types';
 
 
 interface props {
@@ -23,7 +23,7 @@ export function DistributorOrders({ distributors, targetStore }: props) {
           boxSizing: 'border-box',
         }}>
           <h1>{distributor.name}</h1>
-          <h1>Total: ${distributor.distributorOrders.filter((order)=> order.pickupLocation == targetStore).reduce((accumulator, currentValue) => accumulator + currentValue.total, 0).toFixed(2)}</h1>
+          <h1>Total: ${distributor.orders.filter((order)=> order.pickupLocation == targetStore).reduce((accumulator, currentValue) => accumulator + currentValue.total, 0).toFixed(2)}</h1>
           <br></br>
           <table style={{ border: '1px solid black' }}>
             <tbody>
@@ -31,9 +31,9 @@ export function DistributorOrders({ distributors, targetStore }: props) {
                 <td><b>Wine</b></td>
                 <td><b>Quantity</b></td>
                 <td><b>Bottle Price</b></td>
-                <td><b>Total Per Bottle</b></td>
+                <td><b>Line Total</b></td>
               </tr>
-              {distributor.distributorOrders.filter((order)=> order.pickupLocation == targetStore).map((order, index) => {
+              {distributor.orders.filter((order)=> order.pickupLocation == targetStore).map((order, index) => {
                 return <tr key={index}>
                   <td>{order.variety}</td>
                   <td>{order.quantity}</td>

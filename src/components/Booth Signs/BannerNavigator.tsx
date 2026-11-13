@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
-import { Booth, Bottle, saveFormat, Region } from '../../types.ts';
+import { Booth, Wine, saveFormat, Region } from '../../types.ts';
 import BoothBanner from './Banner.tsx';
 import "./Banner.css"
 
@@ -40,7 +40,7 @@ export default function BannerNavigator() {
     const fetchData = async () => {
       try {
         console.log("Fetching data");
-        const data: Bottle[] = await fetchWineData();
+        const data: Wine[] = await fetchWineData();
         const sortedData: Booth[] = groupBooths(data)
         setBooths(sortedData)
       } catch {

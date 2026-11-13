@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 import "./WineGuide.css"
 import { fetchWineData, groupBooths, groupRegions, save } from '../../utils.ts';
-import { Bottle, saveFormat, Region } from '../../types.ts';
+import { Wine, saveFormat, Region } from '../../types.ts';
 import Page from './Page.tsx';
 import RegionCover from './RegionCover.tsx';
 import { advertisements } from './Advertisements.ts';
@@ -43,7 +43,7 @@ export default function WineGuide() {
     const fetchData = async () => {
       try {
         //console.log("Fetching data");
-        const data: Bottle[] = await fetchWineData();
+        const data: Wine[] = await fetchWineData();
         const sortedData: Region[] = groupRegions(groupBooths(data));
         console.log(sortedData)
         //setBooths(sortedData);

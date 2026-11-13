@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import "./VendorDropOff.css"
-import { fetchOrderData, groupDistributors, groupOrders, paginate } from '../../utils.ts';
-import { Buyer, Distributor, BuyerOrder } from '../../types.ts';
+import { assembleBuyerList, fetchOrderData, groupDistributors, paginate } from '../../utils.ts';
+import { Distributor } from '../../types.ts';
 import VendorDropOff from './VendorDropOff.tsx';
 
 export function VendorNavigator() {
@@ -11,13 +11,11 @@ export function VendorNavigator() {
 
   useEffect(() => {  // fetch the initial data and set the state
     const fetchData = async () => { // buyer's club orders
-      try {
-        const data: BuyerOrder[] = await fetchOrderData();
-        const sortedDistributors: Distributor[] = groupDistributors(data)
-        setDistributors(sortedDistributors)
-      } catch {
-        console.log("Error fetching data in useEffect");
-      }
+      const data = await fetchOrderData();
+            const allBuyers = assembleBuyerList(data)
+      const buyersList = Object.values(allBuyers);
+            const distributorList = groupDistributors(buyersList)
+            setDistributors(distributorList)
     };
 
     fetchData();

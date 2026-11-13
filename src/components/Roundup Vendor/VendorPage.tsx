@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { BuyerOrder, Distributor, Slice } from '../../types';
+import { Distributor, Slice, VendorDestination } from '../../types';
 
 interface props {
     distributor: Distributor
@@ -7,60 +6,46 @@ interface props {
     targetStore: string
 }
 
-export function VendorPage({ distributor, slice, targetStore }: props) {
-    const [rows, setRows] = useState<React.ReactElement[]>([])
-    const [filteredOrders, setFilteredOrders] = useState<BuyerOrder[]>([])
 
-    useEffect(() => {
-        // set the rows to be rendered
-        const rows = []
-        const filteredOrders = distributor.buyerOrders.filter((order)=> order['Pickup Location'] == targetStore)
-        setFilteredOrders(filteredOrders)
-        for (let i = slice.start; i < slice.end; i++) {
-            if (filteredOrders[i])
-                rows.push(
-                    <VendorTR key={`TR-${i}`} order={filteredOrders[i]}></VendorTR>
-                )
-        }
-        setRows(rows)
-    }, [distributor])
+export function VendorPage({ distributor, slice, targetStore }: props) {
+    const filteredByStore: VendorDestination[] = distributor.destinations.filter((destination) => destination.buyer.store === targetStore)
+    const sliced = filteredByStore.slice(slice.start, slice.end)
 
     return (
         <div className="page vendor">
-            <h1>{distributor?.name}</h1>
-            <h1>${filteredOrders?.reduce((accumulator, currentValue) => accumulator + currentValue.Total, 0).toFixed(2)}</h1>
-            <h1>Orders {slice.start}-{slice.start + rows.length} of {filteredOrders?.length}</h1>
+            <h1>{distributor.name}</h1>
+            <h1>${filteredByStore.reduce((accumulator, destination) => accumulator + (destination.wine.Price * destination.quantity), 0).toFixed(2)}</h1>
+            <h1>Orders {slice.start}-{slice.start + sliced.length} of {filteredByStore.length}</h1>
             <br></br>
             <table style={{ border: '1px solid black' }}>
                 <tbody>
                     <tr>
-                        <td className='dropoffTD' style={{width: '20%'}}><b>Buyer</b></td>
-                        {/* <td className='dropoffTD'><b>Buyer #</b></td> */}
-                        {/* <td className='dropoffTD'><b>Pickup</b></td> */}
-                        <td className='dropoffTD' style={{width: '60%'}}><b>Wine</b></td>
-                        <td className='dropoffTD' style={{width: '10%'}}><b>Quantity</b></td>
+                        <td className='dropoffTD' style={{ width: '20%' }}><b>Buyer</b></td>
+                        <td className='dropoffTD' style={{ width: '20%' }}><b>Buyer ID</b></td>
+                        <td className='dropoffTD' style={{ width: '50%' }}><b>Wine</b></td>
+                        <td className='dropoffTD' style={{ width: '10%' }}><b>Quantity</b></td>
                     </tr>
-                    {rows && rows.length > 0 ? rows.map((row) => {
-                        return row
-                    }) : undefined}
+                    {sliced.map((destination, index) => (
+                        <VendorTR key={`TR-${slice.start + index}`} destination={destination} />
+                    ))}
                 </tbody>
             </table>
         </div>
     )
-
 }
 
-interface TDprops {
-    order: BuyerOrder
+interface TRprops {
+    destination: VendorDestination
 }
 
-export function VendorTR({ order }: TDprops) {
+export function VendorTR({ destination }: TRprops) {
 
     return <tr>
-        <td className='dropoffTD name'>{order['First / Last']} <p>{order['Buyer\'s Club #']}, {order['Pickup Location']}</p></td>
-        <td className='dropoffTD variety'>{order.Variety}</td>
-        <td className='dropoffTD quantityTD'>{order.Quantity}</td>
-        
+        <td className='dropoffTD name'>{destination.buyer.name}</td>
+        <td className='dropoffTD id'>{destination.buyer.buyerId}</td>
+        <td className='dropoffTD variety'>{destination.wine.Wine_Name}</td>
+        <td className='dropoffTD quantityTD'>{destination.quantity}</td>
+
     </tr>
 
 

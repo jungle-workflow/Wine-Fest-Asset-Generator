@@ -1,4 +1,4 @@
-import { Booth, Bottle } from "../../types";
+import { Booth, Wine } from "../../types";
 import { getMajorityRegion } from "../../utils";
 import BottleLayout from './BottleLayout';
 import QRCode from 'qrcode'
@@ -94,7 +94,7 @@ export function BoothLayout({ booth, classAttr: position, regionLabel, pageNum }
             </div>
 
             <div className="bottles">
-                {booth.bottles.map((wine: Bottle, index) => {
+                {booth.bottles.map((wine: Wine, index) => {
                     return <BottleLayout bottle={wine} key={index} regionSection={regionLabel} regionOverride={boothRegion}></BottleLayout>
                 })}
             </div>

@@ -1,7 +1,7 @@
-import { Booth, Bottle, Buyer, Distributor, DistributorOrder, saveFormat, kinds, Region, Slice, routes, RawRecord, BuyerAction, BuyerFormSubmit, UpdateCart } from "./types";
+import { Booth, Wine, Buyer, Distributor, DistributorOrder, saveFormat, kinds, Region, Slice, routes, RawRecord, BuyerAction, BuyerFormSubmit, UpdateCart } from "./types";
 import html2pdf from 'html2pdf.js';
 
-export const fetchWineData = async (): Promise<Bottle[]> => {
+export const fetchWineData = async (): Promise<Wine[]> => {
     try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbz4yrN6sQF9b1foeOmfD_5lvrrghd0MAqXRwcsy-Bv-l12XdChOGnbIzMwkVV2YHMFcRA/exec");
         //const response = await fetch("/src/assets/data.json");
@@ -12,7 +12,7 @@ export const fetchWineData = async (): Promise<Bottle[]> => {
         const bottleData = data.data
         console.log(bottleData);
 
-        return bottleData as Bottle[]
+        return bottleData as Wine[]
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
         throw error; // Ensure the error is propagated if necessary 
@@ -118,14 +118,14 @@ export const save = (slice: any, exportFormat: string): Promise<void> => {
 
 }
 
-export const groupBooths = (response: Bottle[]): Booth[] => {
+export const groupBooths = (response: Wine[]): Booth[] => {
     // take in the json response and return an object containing each section as an array of items in that section
     // Assuming your data is in an array of objects
     // Initialize an empty object to store the grouped data
     const booths: Booth[] = []
 
     // Loop through the data and group by the key
-    response.forEach((bottle: Bottle) => {
+    response.forEach((bottle: Wine) => {
         if (bottle.Exclude) { return }
         const boothNum: string = String(bottle["Booth #"])
         const existingBooth: Booth | undefined = booths.find((booth) => booth.number == boothNum);
@@ -191,7 +191,7 @@ export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
     const distributors: Distributor[] = []
     const distributorEntries = new Map<string, {
         distributor: Distributor
-        ordersByWineAndStore: Map<string, DistributorOrder>
+        ordersByWineStoreAndPrice: Map<string, DistributorOrder>
     }>()
 
     buyers.forEach((buyer) => {
@@ -205,22 +205,25 @@ export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
             if (!distributorEntry) {
                 const distributor: Distributor = {
                     name: distributorName,
-                    distributorOrders: []
+                    orders: [],
+                    destinations: []
                 }
                 distributorEntry = {
                     distributor,
-                    ordersByWineAndStore: new Map()
+                    ordersByWineStoreAndPrice: new Map()
                 }
                 distributorEntries.set(distributorName, distributorEntry)
                 distributors.push(distributor)
             }
 
-            const orderKey = JSON.stringify([wine.Wine_ID, buyer.store])
-            const existingOrder = distributorEntry.ordersByWineAndStore.get(orderKey)
+            distributorEntry.distributor.destinations.push({ buyer, wine, quantity })
+
+            const orderKey = JSON.stringify([wine.Wine_ID, buyer.store, wine.Price])
+            const existingOrder = distributorEntry.ordersByWineStoreAndPrice.get(orderKey)
 
             if (existingOrder) {
                 existingOrder.quantity += quantity
-                existingOrder.total = existingOrder.price * existingOrder.quantity
+                existingOrder.total += wine.Price * quantity
             } else {
                 const order: DistributorOrder = {
                     winery: wine["Winery Name"],
@@ -230,8 +233,8 @@ export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
                     total: wine.Price * quantity,
                     pickupLocation: buyer.store
                 }
-                distributorEntry.distributor.distributorOrders.push(order)
-                distributorEntry.ordersByWineAndStore.set(orderKey, order)
+                distributorEntry.distributor.orders.push(order)
+                distributorEntry.ordersByWineStoreAndPrice.set(orderKey, order)
             }
         })
     })
@@ -251,7 +254,7 @@ export const getFontSize = (numElements: number) => {
     return Math.max(minValue, Math.min(maxValue, output));
 }
 
-export const getMajorityRegion = (booth: Booth, key: keyof Bottle = "Region"): { region: string, count: number } => {
+export const getMajorityRegion = (booth: Booth, key: keyof Wine = "Region"): { region: string, count: number } => {
     const regionCounts = new Map<string, number>()
     let majorityRegion: string | undefined
     let majorityCount = 0
@@ -308,7 +311,7 @@ export function assembleBuyerList(buyerActions: BuyerAction[]): Record<string, B
                 action = action as BuyerFormSubmit
                 const selectedWines = action.order && action.order.selectedWines;
                 for (const wine of selectedWines) {
-                    const existingWine: Bottle | undefined = cart[wine.Wine_ID]
+                    const existingWine: Wine | undefined = cart[wine.Wine_ID]
                     if (existingWine) {
                         existingWine.quantity = Number(existingWine.quantity) + Number(wine.quantity);
                     } else {

@@ -1,8 +1,8 @@
-import { Bottle } from "../../types";
+import { Wine } from "../../types";
 
 
 interface props {
-    bottle: Bottle
+    bottle: Wine
     regionSection: string
     regionOverride?: string // used for overriding the compare to region (when all subregions are the same)
 }

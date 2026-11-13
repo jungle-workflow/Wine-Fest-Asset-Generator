@@ -1,4 +1,18 @@
-export type Bottle = {
+export type Slice = {
+    start: number,
+    end: number
+}
+
+export const saveFormat = {
+    banner: "banner",
+    clipboard: "clipboard",
+    guide: "guide",
+    slips: "slips",
+    spreadsheet: "spreadsheet",
+}
+
+
+export type Wine = {
     Created_Time: string,
     Modified_Time: string,
     "Booth #": number,
@@ -25,7 +39,7 @@ export type Booth = {
     name: string
     number: string
     ID: string
-    bottles: Bottle[]
+    bottles: Wine[]
     advImg?: string
     kind: string
 }
@@ -52,7 +66,8 @@ export type Advertisement = {
 
 export type Distributor = {
     name: string
-    distributorOrders: DistributorOrder[]
+    orders: DistributorOrder[]
+    destinations: VendorDestination[]
     contact?: string
     phone?: string
     email?: string
@@ -67,18 +82,16 @@ export type DistributorOrder = {
     pickupLocation: string
 }
 
-export type Slice = {
-    start: number,
-    end: number
+
+export type VendorDestination = {
+    // contains the wine data and quantity of a single wine that needs to be dropped off at a single buyers booth
+    buyer: Buyer
+    distributor?: Distributor
+    wine: Wine
+    quantity: number
 }
 
-export const saveFormat = {
-    banner: "banner",
-    clipboard: "clipboard",
-    guide: "guide",
-    slips: "slips",
-    spreadsheet: "spreadsheet",
-}
+
 
 export type Buyer = {
     name: string;
@@ -86,23 +99,24 @@ export type Buyer = {
     store: string;
     email: string;
     phone: string;
-    cart?: Record<string, Bottle>
+    cart?: Record<string, Wine>
 }
 
 export type BuyerFormSubmit = {
     action: "buyerFormSubmit";
     order: {
         boothNum: string;
-        selectedWines: Bottle[];
+        selectedWines: Wine[];
     };
     buyer: Buyer;
 };
 
 export type UpdateCart = {
     action: "updateCart";
-    updatedWine: Bottle;
+    updatedWine: Wine;
     buyer: Buyer;
 };
+
 export type BuyerAction = BuyerFormSubmit | UpdateCart
 
 export type BuyerActionPayload = {

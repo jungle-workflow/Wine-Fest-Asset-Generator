@@ -1,4 +1,4 @@
-import { Booth, Bottle } from "../../types";
+import { Booth, Wine } from "../../types";
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react';
 import { getMajorityRegion } from "../../utils";
@@ -84,7 +84,7 @@ export default function Clipboard({ booth, classAttr: position, regionLabel }: p
                         :  */<p className="region">{region}</p>
                     }
                     <div className="bottles">
-                        {booth.bottles.map((wine: Bottle, index) => {
+                        {booth.bottles.map((wine: Wine, index) => {
                             return <>
                                 <div className="bottle">
                                     <h2>{wine.Wine_Name}</h2>

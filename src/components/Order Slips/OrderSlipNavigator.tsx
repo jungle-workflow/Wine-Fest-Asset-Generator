@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 //@ts-ignore
 import "./OrderSlips.css"
 import { fetchWineData, groupBooths, save } from '../../utils.ts';
-import { Booth, Bottle, saveFormat } from '../../types.ts';
+import { Booth, Wine, saveFormat } from '../../types.ts';
 import Page from './Page.tsx';
 
 export default function OrderSlipNavigator() {
@@ -39,7 +39,7 @@ export default function OrderSlipNavigator() {
     const fetchData = async () => {
       try {
         //console.log("Fetching data");
-        const data: Bottle[] = await fetchWineData();
+        const data: Wine[] = await fetchWineData();
         const sortedData: Booth[] = groupBooths(data)
         setBooths(sortedData)
       } catch {

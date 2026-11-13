@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {Distributor, Slice } from '../../types';
+import React from 'react';
+import { Distributor, Slice } from '../../types';
 import { VendorPage } from './VendorPage';
-
 
 interface props {
   distributors: Distributor[]
@@ -9,39 +8,30 @@ interface props {
   targetStore: string
 }
 
+
+
 export function VendorDropOff({ distributors, slice, targetStore }: props) {
-  const [pages, setPages] = useState<any[]>([])
-  
-  useEffect(() => {
-    setPages(getAllPages(distributors))
-  }, [distributors])
+  const pages: React.ReactElement[] = []
 
-  const getAllPages = (distributors: Distributor[]) => {
-    const pages: React.ReactElement[] = []
-    
+  distributors.forEach((distributor, i) => {
+    const filteredOrders = distributor.orders.filter((order) => order.pickupLocation === targetStore)
+    for (let j = 0; j * 15 < filteredOrders.length; j++) {
+      const start = j * 15
+      if (start >= filteredOrders.length) break
 
-    distributors.forEach((distributor, i) => {
-      const filteredOrders = distributor.buyerOrders.filter((order) => order['Pickup Location'] == targetStore)
-      distributor.buyerOrders = filteredOrders
-      let pageLength = 15
-      let count = 0
-      for (let j = 0; j < 10; j++) {
-        console.log(`slice: ${count} ${count + pageLength}`, distributor.name);
-        
-        if (filteredOrders.length > count) {
-          pages.push(
-            <VendorPage distributor={distributor} slice={{ start: count, end: count += pageLength }} targetStore={targetStore} key={`dist-${i}-page-${j}`}></VendorPage>
-          )
-        }
-      }
-    })
-    return pages
-  }
-
-
+      pages.push(
+        <VendorPage
+          distributor={distributor}
+          slice={{ start, end: start + 15 }}
+          targetStore={targetStore}
+          key={`dist-${i}-page-${j}`}
+        />
+      )
+    }
+  })
 
   return <>
-    {pages && pages.length > 0 ? pages.slice(slice.start, slice.end) : undefined}
+    {pages.slice(slice.start, slice.end)}
   </>
 }
 

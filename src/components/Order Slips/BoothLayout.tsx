@@ -1,4 +1,4 @@
-import { Booth, Bottle } from "../../types";
+import { Booth, Wine } from "../../types";
 import BottleLayout from './BottleLayout';
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react';
@@ -64,7 +64,7 @@ export function BoothLayout({ booth }: props) {
             </div>
 
             <div className="bottles">
-                {booth.bottles.map((wine: Bottle, index) => {
+                {booth.bottles.map((wine: Wine, index) => {
                     return <BottleLayout bottle={wine} key={index}></BottleLayout>
                 })}
             </div>
