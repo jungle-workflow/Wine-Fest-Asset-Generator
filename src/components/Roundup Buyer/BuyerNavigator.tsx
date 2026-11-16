@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 //@ts-ignore
 import "./BuyerReceipts.css"
-import { assembleBuyerList, fetchOrderData, paginate } from '../../utils.ts';
+import { assembleBuyerList, fetchOrderData, getTotalSale, paginate } from '../../utils.ts';
 import { Buyer, Slice } from '../../types.ts';
 import BuyerReceipts from './BuyerReceipts.tsx';
 
@@ -16,6 +16,8 @@ export default function BuyerNavigator() {
       const allBuyers = assembleBuyerList(data)
       const buyersList = Object.entries(allBuyers).map(([_, buyer]) => buyer);
       setBuyers(buyersList)
+
+      console.log(getTotalSale(buyersList))
     }
     fetchData();
 
@@ -31,7 +33,7 @@ export default function BuyerNavigator() {
     };
   }, [slice])
 
-  return <div id="all">
+  return <div id="all" className='spreadsheet'>
     {/* consider slicing booths in pieces because html2pdf taps out around 25 pages */}
     <BuyerReceipts buyers={buyers} slice={slice} targetStore='Fairfield'></BuyerReceipts>
   </div >

@@ -15,7 +15,7 @@ export function VendorDropOff({ distributors, slice, targetStore }: props) {
 
   distributors.forEach((distributor, i) => {
     const filteredOrders = distributor.orders.filter((order) => order.pickupLocation === targetStore)
-    for (let j = 0; j * 15 < filteredOrders.length; j++) {
+    for (let j = 0; j * 15 < filteredOrders.length; j++) { // paginate
       const start = j * 15
       if (start >= filteredOrders.length) break
 
@@ -24,6 +24,7 @@ export function VendorDropOff({ distributors, slice, targetStore }: props) {
           distributor={distributor}
           slice={{ start, end: start + 15 }}
           targetStore={targetStore}
+          page={j}
           key={`dist-${i}-page-${j}`}
         />
       )

@@ -1,5 +1,6 @@
 import { Booth, Wine, Buyer, Distributor, DistributorOrder, saveFormat, kinds, Region, Slice, routes, RawRecord, BuyerAction, BuyerFormSubmit, UpdateCart } from "./types";
 import html2pdf from 'html2pdf.js';
+import writeXlsxFile from 'write-excel-file/universal';
 
 export const fetchWineData = async (): Promise<Wine[]> => {
     try {
@@ -118,6 +119,59 @@ export const save = (slice: any, exportFormat: string): Promise<void> => {
 
 }
 
+export const saveDistributorsWorkbook = async (distributors: Distributor[], targetStore: string): Promise<void> => {
+    const usedSheetNames = new Set<string>()
+    const invalidSheetNameCharacters = new Set(["[", "]", ":", "*", "?", "/", "\\"])
+    const sheets = distributors.map((distributor) => {
+        const baseName = [...distributor.name]
+            .map((character) => invalidSheetNameCharacters.has(character) ? "_" : character)
+            .join("")
+            .replace(/^'+|'+$/g, "")
+            .trim() || "Distributor"
+        const makeSheetName = (suffix = "") => {
+            let name = ""
+            for (const character of baseName) {
+                if (name.length + character.length > 31 - suffix.length) break
+                name += character
+            }
+            return `${name}${suffix}` || "Distributor"
+        }
+
+        const orders = distributor.orders.filter((order) => order.pickupLocation === targetStore)
+        let sheetName = makeSheetName()
+        let suffix = 2
+        while (usedSheetNames.has(sheetName.toLowerCase())) {
+            sheetName = makeSheetName(` (${suffix++})`)
+        }
+        usedSheetNames.add(sheetName.toLowerCase())
+
+        return {
+            sheet: sheetName,
+            data: [
+                ["Wine", "Quantity", "Bottle Price", "Line Total"],
+                ...orders.map((order) => [order.variety, order.quantity, order.price, order.total])
+            ],
+            columns: [{ width: 36 }, { width: 12 }, { width: 16 }, { width: 14 }],
+            stickyRowsCount: 1
+        }
+    })
+
+    if (sheets.length === 0) {
+        throw new Error("Cannot create distributor workbook without distributors.")
+    }
+
+    const safeStoreName = targetStore.replace(/[<>:"/\\|?*]/g, "_").trim() || "store"
+    const blob = await writeXlsxFile(sheets).toBlob()
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `2026_distributor_orders_${safeStoreName}.xlsx`
+    document.body.append(link)
+    link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+}
+
 export const groupBooths = (response: Wine[]): Booth[] => {
     // take in the json response and return an object containing each section as an array of items in that section
     // Assuming your data is in an array of objects
@@ -199,7 +253,7 @@ export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
             const quantity = Number(wine.quantity)
             if (!Number.isFinite(quantity) || quantity <= 0) return
 
-            const distributorName = wine["Distributor Name"]
+            const distributorName = wine["Distributor Name"].trim()
             let distributorEntry = distributorEntries.get(distributorName)
 
             if (!distributorEntry) {
@@ -240,6 +294,19 @@ export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
     })
 
     return distributors
+}
+
+export const getTotalSale = (buyers: Buyer[]): number => {
+    return buyers.reduce((total, buyer) => {
+        const buyerTotal = Object.values(buyer.cart ?? {}).reduce((sum, wine) => {
+            const quantity = Number(wine.quantity)
+            return Number.isFinite(quantity) && quantity > 0
+                ? sum + wine.Price * quantity
+                : sum
+        }, 0)
+
+        return total + buyerTotal
+    }, 0)
 }
 
 export const getFontSize = (numElements: number) => {
@@ -302,7 +369,7 @@ export function assembleBuyerList(buyerActions: BuyerAction[]): Record<string, B
             allBuyers[buyer.buyerId] = buyer
             allBuyers[buyer.buyerId].cart = {};
         }
-        console.log("Buyer:", buyer)
+        //console.log("Buyer:", buyer)
 
         let cart = allBuyers[buyer.buyerId].cart
         if (cart) {

@@ -36,7 +36,8 @@ export function BuyerReceipts({ buyers, slice, targetStore }: props) {
           <table style={{ border: '1px solid black' }}>
             <tbody>
               <tr>
-                <td style={{ width: "50%" }}>Wine</td>
+                <td style={{ width: "40%" }}>Wine</td>
+                <td  style={{ width: "25%" }}>Booth</td>
                 <td>Quantity</td>
                 <td>Bottle Price</td>
                 <td>Sale</td>
@@ -45,6 +46,7 @@ export function BuyerReceipts({ buyers, slice, targetStore }: props) {
                 const quantity = Number(wine.quantity)
                 return <tr key={wine.Wine_ID}>
                   <td className='name'>{wine.Wine_Name}<p>{wine["Winery Name"]}</p></td>
+                  <td>{wine['Booth #']}<br />{wine.Booth_Name}</td>
                   <td>{quantity}</td>
                   <td>{wine.Price}</td>
                   <td>{(wine.Price * quantity).toFixed(2)}</td>
