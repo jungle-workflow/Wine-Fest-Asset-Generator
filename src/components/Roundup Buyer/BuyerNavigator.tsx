@@ -14,7 +14,9 @@ export default function BuyerNavigator() {
     const fetchData = async () => {
       const data = await fetchOrderData();
       const allBuyers = assembleBuyerList(data)
-      const buyersList = Object.entries(allBuyers).map(([_, buyer]) => buyer);
+      const buyersList = Object.values(allBuyers).sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+      );
       setBuyers(buyersList)
 
       console.log(getTotalSale(buyersList))

@@ -145,14 +145,18 @@ export const saveDistributorsWorkbook = async (distributors: Distributor[], targ
         }
         usedSheetNames.add(sheetName.toLowerCase())
 
+        const total = orders.reduce((sum, order) => sum + order.total, 0)
+
         return {
             sheet: sheetName,
             data: [
-                ["Wine", "Quantity", "Bottle Price", "Line Total"],
-                ...orders.map((order) => [order.variety, order.quantity, order.price, order.total])
+                [sheetName],
+                [total],
+                ["Wine", "Winery", "Quantity", "Bottle Price", "Line Total"],
+                ...orders.map((order) => [order.variety, order.winery, order.quantity, order.price, order.total])
             ],
             columns: [{ width: 36 }, { width: 12 }, { width: 16 }, { width: 14 }],
-            stickyRowsCount: 1
+            stickyRowsCount: 3
         }
     })
 
@@ -293,7 +297,9 @@ export const groupDistributors = (buyers: Buyer[]): Distributor[] => {
         })
     })
 
-    return distributors
+    return distributors.sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+    )
 }
 
 export const getTotalSale = (buyers: Buyer[]): number => {
