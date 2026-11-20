@@ -34,7 +34,7 @@ export function DistributorNavigator() {
     };
   }, [slice])
 
-  const targetStore = 'Eastgate'
+  const targetStore = 'Fairfield'
   const hasOrdersForTargetStore = distributors.some((distributor) =>
     distributor.orders.some((order) => order.pickupLocation === targetStore)
   )

@@ -13,6 +13,7 @@ export default function BuyerNavigator() {
   useEffect(() => {  // fetch the initial data and set the state
     const fetchData = async () => {
       const data = await fetchOrderData();
+      console.log(data)
       const allBuyers = assembleBuyerList(data)
       const buyersList = Object.values(allBuyers).sort((a, b) =>
         a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })

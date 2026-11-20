@@ -35,6 +35,6 @@ export function VendorNavigator() {
 
   return <div id="all" className='spreadsheet'>
     {/* consider slicing booths in pieces because html2pdf taps out around 25 pages */}
-    <VendorDropOff distributors={distributors} slice={slice} targetStore='Eastgate' ></VendorDropOff>
+    <VendorDropOff distributors={distributors} slice={slice} targetStore='Fairfield' ></VendorDropOff>
   </div >
 }
